@@ -1,3 +1,25 @@
+html body {
+    background-color: rgb(211, 211, 211);
+    font-family: 'Muli', serif;
+}
+
+i {
+    color: rgb(211, 211, 211);
+}
+
+.ui.tiny.inverted.tabular.menu {
+    margin: 0 auto;
+    font-family: 'Muli', serif;
+    font-weight: 200;
+    height: 2rem;
+}
+
+#sidebar {
+    width: 7rem;
+    display: none;
+}
+
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)

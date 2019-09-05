@@ -6,20 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Muli:200,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Harmonics</title>
 </head>
 
 <body>
-    <nav class="ui inverted very thin visible sidebar menu">
-        <a class="item">Song</a>
-        <a class="item">Settings</a>
-        <a class="item">Export?</a>
+    <nav id="navbar" class="ui tiny inverted tabular menu">
+        <button class="ui basic circular icon button"><i class="grid layout icon"></i></button>
+        <!-- <a class="item">Harmonics</a> -->
     </nav>
     <main>
+        <section id="sidebar" class="ui inverted vertical menu">
+            <a class="item">Key</a>
+            <a class="item">Settings</a>
+        </section>
+        <div id="card_holder">
+
+        </div>
 
     </main>
-
     <script src="assets/commonPractice.js"></script>
     <script src="app.js"></script>
 </body>
