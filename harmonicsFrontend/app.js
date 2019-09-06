@@ -1,24 +1,12 @@
 const cardHolder = document.querySelector('#card_holder')
 const sidebarButton = document.querySelector('nav button')
-const sidebar = document.querySelector('#sidebar')
+const sidebar = document.querySelector('#sidebar_container')
 
 let currentKey = undefined
 
 
 //event listners
 sidebar.addEventListener('click', () => sidebarEvents(event))
-
-
-
-//functions
-
-function pickKey() {
-    console.log("key")
-}
-
-function openSettings() {
-    console.log("settings")
-}
 
 function sidebarEvents(event) {
     if (event.target.classList.contains('item')) {
@@ -33,4 +21,17 @@ function sidebarEvents(event) {
     } else {
         console.warn("event failed")
     }
+}
+
+
+
+
+//functions
+
+function pickKey() {
+    console.log("key")
+}
+
+function openSettings() {
+    console.log("settings")
 }
