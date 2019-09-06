@@ -22,10 +22,18 @@ nav img {
     height: 100%;
 }
 
+#composing_table {
+    width: 80%;
+}
+
 #sidebar_container {
     margin-top: 11px;
     background-color: #1b1c1d;
     width: 8rem;
     margin-left: 0.5rem;
     height: 100%;
+}
+
+#card_holder {
+    width: 100%;
 }
