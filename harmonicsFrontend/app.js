@@ -2,7 +2,9 @@ const cardHolder = document.querySelector('#card_holder')
 const sidebarButton = document.querySelector('nav button')
 const sidebar = document.querySelector('#sidebar_container')
 
+let previousKey = undefined
 let currentKey = undefined
+let desiredKey = undefined
 
 
 //event listners
@@ -47,6 +49,7 @@ function createSmallCard() {
 }
 
 function changeCurrentKey(name, mode) {
+    previousKey = currentKey
     currentKey = keys.find(key => {
         return key.name === name && key.mode === mode
     })
