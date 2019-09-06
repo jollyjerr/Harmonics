@@ -19,6 +19,9 @@ class Key {
         this.submediant = submediant;
         this.leadingtone = leadingtone;
     }
+    renderChords() {
+        console.log(this)
+    }
 }
 
 const craftChord = (name, type, sound) => {
