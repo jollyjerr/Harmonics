@@ -2,20 +2,27 @@ let previousKey = undefined
 let currentKey = undefined
 let currentPhrase = []
 
+const recommendations = {
+    undefined: () => fromTonic(),
+    tonic: () => fromTonic(),
+    supertonic: () => fromSupertonic(),
+    mediant: () => fromMediant(),
+    subdominant: () => fromSubdominant(),
+    dominant: () => fromDominant(),
+    submediant: () => fromSubmediant(),
+    leadingtone: () => fromLeadingtone()
+}
+
 function processRecommendations() {
     if (previousKey && previousKey !== currentKey) {
         processModulationRecommendations()
     } else {
-        processTonalRecommendations()
+        recommendations[findChordsFunction(prevChord())]()
     }
 }
 
 function processModulationRecommendations() {
     console.log("Modulation path coming soon")
-}
-
-function processTonalRecommendations() {
-    console.log("just use the V chord")
 }
 
 function changeCurrentKey(name, mode) {
@@ -41,4 +48,12 @@ function removeChord(event, sadChord) {
     currentPhrase = currentPhrase.filter(chord => chord !== sadChord)
     event.target.remove()
     processRecommendations()
+}
+
+function prevChord() {
+    return currentPhrase.slice(-1)[0]
+}
+
+function findChordsFunction(chord) {
+    return Object.keys(currentKey).find(key => currentKey[key] === chord)
 }
