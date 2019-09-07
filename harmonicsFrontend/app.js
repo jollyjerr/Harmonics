@@ -21,7 +21,7 @@ function sidebarEvents(event) {
                 break;
         }
     } else {
-        console.warn("event failed")
+        console.warn("event triggered without handler")
     }
 }
 
@@ -78,5 +78,5 @@ function removeKeyDisplay() {
 }
 
 function openSettings() {
-    console.log("settings")
+    console.log("There are no settings yet, yo")
 }
