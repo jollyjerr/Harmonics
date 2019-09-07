@@ -31,8 +31,9 @@ function sidebarEvents(event) {
 //functions
 
 function openPickKeyMenu() {
+    removeCardHolderCards()
     keys.forEach(key => {
-        let card = createSmallCard()
+        let card = createSmallButton()
         card.textContent = `${key.name} ${key.mode}`
         card.addEventListener('click', () => changeCurrentKey(key.name, key.mode))
         cardHolder.append(card)
@@ -50,13 +51,16 @@ function changeCurrentKey(name, mode) {
 }
 
 function displayCurrentKey() {
-    removeKeyDisplay()
+    removeKeyOnSidebar()
     renderKeyOnSidebar()
-
+    openPickChordMenu()
 }
 
 function openPickChordMenu() {
-
+    let chordMenu = Object.keys(currentKey).splice(2, 9)
+    chordMenu.map(chord => {
+        renderBasicChordCard(currentKey[chord])
+    })
 }
 
 function removeCardHolderCards() {
@@ -75,7 +79,7 @@ function renderKeyOnSidebar() {
     sidebar.appendChild(div)
 }
 
-function removeKeyDisplay() {
+function removeKeyOnSidebar() {
     let old = document.querySelector('.ui.mini.circular.segment')
     old ?
         sidebar.removeChild(old) :
@@ -86,11 +90,17 @@ function openSettings() {
     console.log("There are no settings yet, yo")
 }
 
-function createSmallCard() {
+function createSmallButton() {
     let div = document.createElement('button')
     div.classList.add('ui')
     div.classList.add('mini')
     div.classList.add('circular')
     div.classList.add('button')
     return div
+}
+
+function renderBasicChordCard(chord) {
+    let div = createSmallButton()
+    div.textContent = `${chord.name} ${chord.type}`
+    cardHolder.appendChild(div)
 }
