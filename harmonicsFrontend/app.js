@@ -14,7 +14,7 @@ function sidebarEvents(event) {
     if (event.target.classList.contains('item')) {
         switch (event.target.textContent) {
             case "Set Key":
-                pickKeyMenu()
+                openPickKeyMenu()
                 break;
             case "Settings":
                 openSettings()
@@ -30,7 +30,7 @@ function sidebarEvents(event) {
 
 //functions
 
-function pickKeyMenu() {
+function openPickKeyMenu() {
     keys.forEach(key => {
         let card = createSmallCard()
         card.textContent = `${key.name} ${key.mode}`
@@ -39,34 +39,39 @@ function pickKeyMenu() {
     })
 }
 
-function createSmallCard() {
-    let div = document.createElement('button')
-    div.classList.add('ui')
-    div.classList.add('mini')
-    div.classList.add('circular')
-    div.classList.add('button')
-    return div
-}
 
 function changeCurrentKey(name, mode) {
     previousKey = currentKey
     currentKey = keys.find(key => {
         return key.name === name && key.mode === mode
     })
-    while (cardHolder.firstChild) {
-        cardHolder.removeChild(cardHolder.firstChild);
-    }
+    removeCardHolderCards()
     displayCurrentKey()
 }
 
 function displayCurrentKey() {
+    removeKeyDisplay()
+    renderKeyOnSidebar()
+
+}
+
+function openPickChordMenu() {
+
+}
+
+function removeCardHolderCards() {
+    while (cardHolder.firstChild) {
+        cardHolder.removeChild(cardHolder.firstChild);
+    }
+}
+
+function renderKeyOnSidebar() {
     let div = document.createElement('div')
     div.classList.add('ui')
     div.classList.add('mini')
     div.classList.add('circular')
     div.classList.add('segment')
     div.textContent = `${currentKey.name} ${currentKey.mode}`
-    removeKeyDisplay()
     sidebar.appendChild(div)
 }
 
@@ -79,4 +84,13 @@ function removeKeyDisplay() {
 
 function openSettings() {
     console.log("There are no settings yet, yo")
+}
+
+function createSmallCard() {
+    let div = document.createElement('button')
+    div.classList.add('ui')
+    div.classList.add('mini')
+    div.classList.add('circular')
+    div.classList.add('button')
+    return div
 }
