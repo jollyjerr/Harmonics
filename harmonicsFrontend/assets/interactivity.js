@@ -68,7 +68,7 @@ function removeKeyOnSidebar() {
 }
 
 function openSettings() {
-    console.log("There are no settings yet, yo")
+    alert("There are no settings yet, yo")
 }
 
 function renderBasicChordCard(chord) {
