@@ -4,26 +4,43 @@ let currentPhrase = []
 
 const recommendations = {
     modulation: {
+        Major: {
 
+        },
+        minor: {
+
+        }
     },
     tonal: {
-        undefined: () => fromTonic(),
-        tonic: () => fromTonic(),
-        supertonic: () => fromSupertonic(),
-        mediant: () => fromMediant(),
-        subdominant: () => fromSubdominant(),
-        dominant: () => fromDominant(),
-        submediant: () => fromSubmediant(),
-        leadingtone: () => fromLeadingtone()
+        Major: {
+            undefined: fromTonic,
+            tonic: fromTonic,
+            supertonic: fromSupertonic,
+            mediant: fromMediant,
+            subdominant: fromSubdominant,
+            dominant: fromDominant,
+            submediant: fromSubmediant,
+            leadingtone: fromLeadingtone
+        },
+        minor: {
+            undefined: fromTonic,
+            tonic: fromTonic,
+            supertonic: fromSupertonic,
+            mediant: fromMediant,
+            subdominant: fromSubdominant,
+            dominant: fromDominant,
+            submediant: fromSubmediant,
+            leadingtone: fromLeadingtone
+        }
     }
 }
 
 function processRecommendations() {
     clearRecommendations()
     if (previousKey && previousKey !== currentKey) {
-        recommendations['modulation'][findChordsFunction(prevChord())]()
+        recommendations['modulation'][currentKey.mode][findChordsFunction(prevChord())]()
     } else {
-        recommendations['tonal'][findChordsFunction(prevChord())]()
+        recommendations['tonal'][currentKey.mode][findChordsFunction(prevChord())]()
     }
 }
 
