@@ -30,7 +30,7 @@ const recommendations = {
             subdominant: fromSubdominant,
             dominant: fromDominant,
             submediant: fromSubmediant,
-            leadingtone: fromLeadingtone
+            leadingtone: fromLeadingtoneMinor
         }
     }
 }

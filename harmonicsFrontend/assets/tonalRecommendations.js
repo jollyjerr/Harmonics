@@ -9,11 +9,12 @@ function initializeChordSelection() {
 
 function fromTonic() {
     renderBasics([currentKey.tonic, currentKey.supertonic, currentKey.mediant, currentKey.subdominant, currentKey.dominant, currentKey.submediant, currentKey.leadingtone])
-    renderParallel([currentKey.parallel.subdominant])
+    renderParallel([currentKey.parallel.tonic, currentKey.parallel.subdominant, currentKey.parallel.mediant, currentKey.parallel.submediant])
 }
 
 function fromSupertonic() {
     renderBasics([currentKey.dominant, currentKey.leadingtone])
+    renderParallel([currentKey.parallel.submediant])
 }
 
 function fromMediant() {
@@ -22,22 +23,27 @@ function fromMediant() {
 
 function fromSubdominant() {
     renderBasics([currentKey.dominant, currentKey.leadingtone])
+    renderParallel([currentKey.parallel.submediant])
 }
 
 function fromDominant() {
-    renderBasics([currentKey.tonic])
+    renderBasics([currentKey.tonic, currentKey.submediant])
 }
 
 function fromSubmediant() {
-    renderBasics([currentKey.supertonic, currentKey.subdominant])
+    renderBasics([currentKey.supertonic, currentKey.dominant, currentKey.subdominant])
 }
 
 function fromLeadingtone() {
+    renderBasics([currentKey.mediant, currentKey.tonic])
+}
+
+function fromLeadingtoneMinor() {
     renderBasics([currentKey.mediant])
+    renderParallel([currentKey.parallel.leadingtone])
 }
 //
 //renderers
-
 function renderChordCards(chordsArr) {
     chordsArr.map(chord => {
         renderBasicChordCard(chord)
