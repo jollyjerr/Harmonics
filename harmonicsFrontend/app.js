@@ -5,10 +5,24 @@ let currentPhrase = [];
 const recommendations = {
     modulation: {
         Major: {
-
+            undefined: initializeModulation,
+            tonic: catchTonic,
+            supertonic: catchSupertonic,
+            mediant: catchMediant,
+            subdominant: catchSubdominant,
+            dominant: catchDominant,
+            submediant: catchSubmediant,
+            leadingtone: catchLeadingtone
         },
         minor: {
-
+            undefined: initializeModulation,
+            tonic: catchTonic,
+            supertonic: catchSupertonic,
+            mediant: catchMediant,
+            subdominant: catchSubdominant,
+            dominant: catchDominant,
+            submediant: catchSubmediant,
+            leadingtone: catchLeadingtone
         }
     },
     tonal: {
@@ -36,6 +50,7 @@ const recommendations = {
 }
 
 function processRecommendations() {
+    console.log(findChordsFunction(prevChord()))
     clearRecommendations()
     if (previousKey && previousKey !== currentKey) {
         recommendations['modulation'][currentTonalState()][findChordsFunction(prevChord())]()
