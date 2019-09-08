@@ -1,10 +1,13 @@
-const cardHolder = document.querySelector('#card_holder')
-const sidebarButton = document.querySelector('nav button')
+const playButton = document.querySelector('#play_button')
 const sidebar = document.querySelector('#sidebar_container')
+const sidebarButton = document.querySelector('nav button')
+const cardHolder = document.querySelector('#card_holder')
 const score = document.querySelector('#score')
 
-//event listners
+
 sidebar.addEventListener('click', () => sidebarEvents(event))
+playButton.addEventListener('click', play)
+
 
 function sidebarEvents(event) {
     if (event.target.classList.contains('item')) {
@@ -85,4 +88,21 @@ function createMedButton() {
     div.classList.add('small')
     div.classList.add('button')
     return div
+}
+
+function play() {
+    let interval = 2000
+    currentPhrase.forEach(function(chord, index) {
+        setTimeout(function() {
+            console.log(chord.sound)
+            playChord(chord)
+        }, index * interval);
+    });
+}
+
+function playChord(chord) {
+    let sound = new Howl({
+        src: [chord.sound]
+    })
+    sound.play()
 }
