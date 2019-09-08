@@ -91,7 +91,7 @@ function createMedButton() {
 }
 
 function play() {
-    let interval = 2000
+    let interval = 1500
     currentPhrase.forEach(function(chord, index) {
         setTimeout(function() {
             console.log(chord.sound)
