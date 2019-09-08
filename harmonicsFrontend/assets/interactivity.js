@@ -22,7 +22,7 @@ function sidebarEvents(event) {
 }
 
 function openPickKeyMenu() {
-    removeCardHolderCards()
+    clearChordMenu()
     keys.forEach(key => {
         let card = createSmallButton()
         card.textContent = `${key.name} ${key.mode}`
@@ -34,17 +34,9 @@ function openPickKeyMenu() {
 function displayCurrentKey() {
     removeKeyOnSidebar()
     renderKeyOnSidebar()
-    openPickChordMenu()
 }
 
-function openPickChordMenu() {
-    let chordMenu = Object.keys(currentKey).splice(2, 9)
-    chordMenu.map(chord => {
-        renderBasicChordCard(currentKey[chord])
-    })
-}
-
-function removeCardHolderCards() {
+function clearChordMenu() {
     while (cardHolder.firstChild) {
         cardHolder.removeChild(cardHolder.firstChild);
     }

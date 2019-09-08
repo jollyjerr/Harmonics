@@ -1,7 +1,15 @@
+//controllers
+function initializeChordSelection() {
+    if (!cardHolder.firstChild) {
+        let options = allChordsFrom(currentKey).concat(allChordsFrom(currentKey.parallel))
+        renderChordCards(options)
+    }
+    fromTonic()
+}
+
 function fromTonic() {
-    cardHolder.childNodes.forEach(node => {
-        node.classList.add('positive')
-    })
+    renderBasics([currentKey.tonic, currentKey.supertonic, currentKey.mediant, currentKey.subdominant, currentKey.dominant, currentKey.submediant, currentKey.leadingtone])
+    renderParallel([currentKey.parallel.subdominant])
 }
 
 function fromSupertonic() {
@@ -27,10 +35,25 @@ function fromSubmediant() {
 function fromLeadingtone() {
     renderBasics([currentKey.mediant])
 }
+//
+//renderers
+
+function renderChordCards(chordsArr) {
+    chordsArr.map(chord => {
+        renderBasicChordCard(chord)
+    })
+}
 
 function renderBasics(chordsArr) {
     let recommendedCards = grabNodesFromChords(convertChordsToText(chordsArr))
     recommendedCards.forEach(node => {
         node.classList.add('positive')
+    })
+}
+
+function renderParallel(chordsArr) {
+    let recommendedCards = grabNodesFromChords(convertChordsToText(chordsArr))
+    recommendedCards.forEach(node => {
+        node.classList.add('yellow')
     })
 }

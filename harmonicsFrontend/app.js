@@ -1,6 +1,6 @@
-let previousKey = undefined
-let currentKey = undefined
-let currentPhrase = []
+let previousKey = undefined;
+let currentKey = undefined;
+let currentPhrase = [];
 
 const recommendations = {
     modulation: {
@@ -13,7 +13,7 @@ const recommendations = {
     },
     tonal: {
         Major: {
-            undefined: fromTonic,
+            undefined: initializeChordSelection,
             tonic: fromTonic,
             supertonic: fromSupertonic,
             mediant: fromMediant,
@@ -23,7 +23,7 @@ const recommendations = {
             leadingtone: fromLeadingtone
         },
         minor: {
-            undefined: fromTonic,
+            undefined: initializeChordSelection,
             tonic: fromTonic,
             supertonic: fromSupertonic,
             mediant: fromMediant,
@@ -38,9 +38,9 @@ const recommendations = {
 function processRecommendations() {
     clearRecommendations()
     if (previousKey && previousKey !== currentKey) {
-        recommendations['modulation'][currentKey.mode][findChordsFunction(prevChord())]()
+        recommendations['modulation'][currentTonalState()][findChordsFunction(prevChord())]()
     } else {
-        recommendations['tonal'][currentKey.mode][findChordsFunction(prevChord())]()
+        recommendations['tonal'][currentTonalState()][findChordsFunction(prevChord())]()
     }
 }
 
@@ -49,7 +49,8 @@ function changeCurrentKey(name, mode) {
     currentKey = keys.find(key => {
         return key.name === name && key.mode === mode
     })
-    removeCardHolderCards()
+    establishKeyRelationships()
+    clearChordMenu()
     displayCurrentKey()
     processRecommendations()
 }
@@ -80,6 +81,7 @@ function findChordsFunction(chord) {
 function clearRecommendations() {
     cardHolder.childNodes.forEach(node => {
         node.classList.remove('positive')
+        node.classList.remove('yellow')
     })
 }
 
@@ -95,4 +97,26 @@ function convertChordsToText(chordsArr) {
 
 function grabNodesFromChords(chordsArr) {
     return Array.from(cardHolder.childNodes).filter(chord => chordsArr.includes(chord.textContent))
+}
+
+function establishKeyRelationships() {
+    if (!currentKey.parallel) {
+        let desiredMode = currentKey.mode === "Major" ? "minor" : "Major"
+        currentKey.setParallel(keys.filter(key => key.name === currentKey.name && key.mode === desiredMode)[0])
+    }
+}
+
+function allChordsFrom(key) {
+    let chordNames = Object.keys(key).slice(2, 9)
+    return chordNames.map(chord => {
+        return key[chord]
+    })
+}
+
+function currentTonalState() {
+    return prevChord() ? diminishedFilter(prevChord()) : currentKey.mode
+}
+
+function diminishedFilter(chord) {
+    return chord.type === "diminished" ? currentKey.mode : chord.type
 }
