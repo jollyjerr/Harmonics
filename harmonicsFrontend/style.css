@@ -11,6 +11,11 @@ nav img {
     margin: 0.5em 1em;
 }
 
+.logo {
+    margin-top: 1rem;
+    color: rgb(254, 212, 156);
+}
+
 .ui.tiny.inverted.tabular.menu {
     margin: 0 auto;
     font-family: 'Muli', serif;
