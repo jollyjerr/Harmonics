@@ -3,26 +3,28 @@ let currentKey = undefined
 let currentPhrase = []
 
 const recommendations = {
-    undefined: () => fromTonic(),
-    tonic: () => fromTonic(),
-    supertonic: () => fromSupertonic(),
-    mediant: () => fromMediant(),
-    subdominant: () => fromSubdominant(),
-    dominant: () => fromDominant(),
-    submediant: () => fromSubmediant(),
-    leadingtone: () => fromLeadingtone()
-}
+    modulation: {
 
-function processRecommendations() {
-    if (previousKey && previousKey !== currentKey) {
-        processModulationRecommendations()
-    } else {
-        recommendations[findChordsFunction(prevChord())]()
+    },
+    tonal: {
+        undefined: () => fromTonic(),
+        tonic: () => fromTonic(),
+        supertonic: () => fromSupertonic(),
+        mediant: () => fromMediant(),
+        subdominant: () => fromSubdominant(),
+        dominant: () => fromDominant(),
+        submediant: () => fromSubmediant(),
+        leadingtone: () => fromLeadingtone()
     }
 }
 
-function processModulationRecommendations() {
-    console.log("Modulation path coming soon")
+function processRecommendations() {
+    clearRecommendations()
+    if (previousKey && previousKey !== currentKey) {
+        recommendations['modulation'][findChordsFunction(prevChord())]()
+    } else {
+        recommendations['tonal'][findChordsFunction(prevChord())]()
+    }
 }
 
 function changeCurrentKey(name, mode) {
@@ -55,5 +57,25 @@ function prevChord() {
 }
 
 function findChordsFunction(chord) {
-    return Object.keys(currentKey).find(key => currentKey[key] === chord)
+    return Object.keys(currentKey).find(objectKey => currentKey[objectKey] === chord)
+}
+
+function clearRecommendations() {
+    cardHolder.childNodes.forEach(node => {
+        node.classList.remove('positive')
+    })
+}
+
+function chordText(chord) {
+    return `${chord.name} ${chord.type}`
+}
+
+function convertChordsToText(chordsArr) {
+    return chordsArr.map(chord => {
+        return chordText(chord)
+    })
+}
+
+function grabNodesFromChords(chordsArr) {
+    return Array.from(cardHolder.childNodes).filter(chord => chordsArr.includes(chord.textContent))
 }

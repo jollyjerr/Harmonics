@@ -1,27 +1,52 @@
+const tonalHarmony = {
+
+}
+
+
 function fromTonic() {
-    console.log("tonic!!!")
+    cardHolder.childNodes.forEach(node => {
+        node.classList.add('positive')
+    })
 }
 
 function fromSupertonic() {
-    console.log("supertonic!!!")
+    let recommendedCards = grabNodesFromChords(convertChordsToText([currentKey.subdominant, currentKey.dominant, currentKey.leadingtone]))
+    recommendedCards.forEach(node => {
+        node.classList.add('positive')
+    })
 }
 
 function fromMediant() {
-    console.log("mediant!!!")
+    let recommendedCards = grabNodesFromChords(convertChordsToText([currentKey.subdominant, currentKey.dominant, currentKey.leadingtone]))
+    recommendedCards.forEach(node => {
+        node.classList.add('positive')
+    })
 }
 
 function fromSubdominant() {
-    console.log("subdominant!!!")
+    let recommendedCards = grabNodesFromChords(convertChordsToText([currentKey.subdominant, currentKey.dominant, currentKey.leadingtone]))
+    recommendedCards.forEach(node => {
+        node.classList.add('positive')
+    })
 }
 
 function fromDominant() {
-    console.log("dominant!!!")
+    let recommendedCards = grabNodesFromChords(convertChordsToText([currentKey.subdominant, currentKey.dominant, currentKey.leadingtone]))
+    recommendedCards.forEach(node => {
+        node.classList.add('positive')
+    })
 }
 
 function fromSubmediant() {
-    console.log("submediant!!!")
+    let recommendedCards = grabNodesFromChords(convertChordsToText([currentKey.subdominant, currentKey.dominant, currentKey.leadingtone]))
+    recommendedCards.forEach(node => {
+        node.classList.add('positive')
+    })
 }
 
 function fromLeadingtone() {
-    console.log("leading tone!!!")
+    let recommendedCards = grabNodesFromChords(convertChordsToText([currentKey.subdominant, currentKey.dominant, currentKey.leadingtone]))
+    recommendedCards.forEach(node => {
+        node.classList.add('positive')
+    })
 }
