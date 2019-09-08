@@ -75,7 +75,9 @@ function prevChord() {
 }
 
 function findChordsFunction(chord) {
-    return Object.keys(currentKey).find(objectKey => currentKey[objectKey] === chord)
+    return Object.keys(currentKey).find(objectKey => currentKey[objectKey] === chord) ?
+        Object.keys(currentKey).find(objectKey => currentKey[objectKey] === chord) :
+        Object.keys(currentKey.parallel).find(objectKey => currentKey.parallel[objectKey] === chord)
 }
 
 function clearRecommendations() {
