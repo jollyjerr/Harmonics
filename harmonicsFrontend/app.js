@@ -1,7 +1,7 @@
 let previousKey = undefined;
 let currentKey = undefined;
-let currentPhrase = [];
 let chordIdCounter = 0;
+let currentPhrase = [];
 
 const recommendations = {
     modulation: {
