@@ -124,18 +124,49 @@ function lighten(htmlElement) {
 }
 
 function renderTonalityForm() {
+    score.classList.add('clearing')
+    score.appendChild(createOptionSelection())
+    score.appendChild(createModalSetting())
+    score.appendChild(exitSettingsButton())
+}
+
+function exitSettingsButton() {
+    let button = createMedButton()
+    addManyClasses(button, ['right', 'floated', 'olive', 'basic'])
+    button.textContent = 'Back'
+    button.addEventListener('click', exitSettings)
+    return button
+}
+
+function exitSettings() {
+    console.log("hey gorl")
+}
+
+function createOptionSelection() {
     let options = ['Common Practice', '20th Century']
     let div = createLargeCard()
     let p = createSmallTitle()
     p.innerText = 'Recommend by:'
     div.append(p)
     options.forEach(mode => {
-        let button = createMedButton()
+        let button = createSmallButton()
         button.innerText = mode
         button.addEventListener('click', () => changeHarmonyEra(mode))
         div.appendChild(button)
     })
-    score.appendChild(div)
+    return div
+}
+
+function createModalSetting() {
+    let div = createLargeCard()
+    let p = createSmallTitle()
+    p.innerText = "Modal Borrowing:"
+    let button = createSmallButton()
+    button.textContent = "On"
+    addManyClasses(button, ['positive'])
+    button.addEventListener('click', () => alternateModalBorrowing(event.target))
+    div.append(p, button)
+    return div
 }
 
 function createSmallTitle() {
@@ -148,4 +179,17 @@ function addManyClasses(element, classArr) {
     classArr.forEach(trait => {
         element.classList.add(trait)
     })
+}
+
+function alternateModalBorrowing(button) {
+    modalBorrowing = !modalBorrowing
+    if (modalBorrowing) {
+        button.textContent = "On"
+        button.classList.remove('negative')
+        button.classList.add('positive')
+    } else {
+        button.textContent = "Off"
+        button.classList.remove('positive')
+        button.classList.add('negative')
+    }
 }

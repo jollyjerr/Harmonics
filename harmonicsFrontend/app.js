@@ -1,61 +1,15 @@
 let previousKey = undefined;
 let currentKey = undefined;
+let modalBorrowing = true;
 let chordIdCounter = 0;
 let currentPhrase = [];
-
-const recommendations = {
-    modulation: {
-        Major: {
-            undefined: initializeModulation,
-            tonic: catchTonic,
-            supertonic: catchSupertonic,
-            mediant: catchMediant,
-            subdominant: catchSubdominant,
-            dominant: catchDominant,
-            submediant: catchSubmediant,
-            leadingtone: catchLeadingtone
-        },
-        minor: {
-            undefined: initializeModulation,
-            tonic: catchTonic,
-            supertonic: catchSupertonic,
-            mediant: catchMediant,
-            subdominant: catchSubdominant,
-            dominant: catchDominant,
-            submediant: catchSubmediant,
-            leadingtone: catchLeadingtone
-        }
-    },
-    tonal: {
-        Major: {
-            undefined: initializeChordSelection,
-            tonic: fromTonic,
-            supertonic: fromSupertonic,
-            mediant: fromMediant,
-            subdominant: fromSubdominant,
-            dominant: fromDominant,
-            submediant: fromSubmediant,
-            leadingtone: fromLeadingtone
-        },
-        minor: {
-            undefined: initializeChordSelection,
-            tonic: fromTonic,
-            supertonic: fromSupertonic,
-            mediant: fromMediant,
-            subdominant: fromSubdominant,
-            dominant: fromDominant,
-            submediant: fromSubmediant,
-            leadingtone: fromLeadingtoneMinor
-        }
-    }
-}
 
 function processRecommendations() {
     clearRecommendations()
     if (previousKey && previousKey !== currentKey) {
-        recommendations['modulation'][currentTonalState()][findChordsFunction(prevChord())]()
+        recommendations['modulation'][modalBorrowing][currentTonalState()][findChordsFunction(prevChord())]()
     } else {
-        recommendations['tonal'][currentTonalState()][findChordsFunction(prevChord())]()
+        recommendations['tonal'][modalBorrowing][currentTonalState()][findChordsFunction(prevChord())]()
     }
 }
 
@@ -149,4 +103,101 @@ function diminishedFilter(chord) {
 
 function changeHarmonyEra(mode) {
     alert(mode)
+}
+
+const recommendations = {
+    modulation: {
+        true: {
+            Major: {
+                undefined: initializeModulation,
+                tonic: catchTonic,
+                supertonic: catchSupertonic,
+                mediant: catchMediant,
+                subdominant: catchSubdominant,
+                dominant: catchDominant,
+                submediant: catchSubmediant,
+                leadingtone: catchLeadingtone
+            },
+            minor: {
+                undefined: initializeModulation,
+                tonic: catchTonic,
+                supertonic: catchSupertonic,
+                mediant: catchMediant,
+                subdominant: catchSubdominant,
+                dominant: catchDominant,
+                submediant: catchSubmediant,
+                leadingtone: catchLeadingtone
+            }
+        },
+        false: {
+            Major: {
+                undefined: initializeModulation,
+                tonic: catchTonic,
+                supertonic: catchSupertonic,
+                mediant: catchMediant,
+                subdominant: catchSubdominant,
+                dominant: catchDominant,
+                submediant: catchSubmediant,
+                leadingtone: catchLeadingtone
+            },
+            minor: {
+                undefined: initializeModulation,
+                tonic: catchTonic,
+                supertonic: catchSupertonic,
+                mediant: catchMediant,
+                subdominant: catchSubdominant,
+                dominant: catchDominant,
+                submediant: catchSubmediant,
+                leadingtone: catchLeadingtone
+            }
+        }
+
+    },
+    tonal: {
+        true: {
+            Major: {
+                undefined: initializeChordSelection,
+                tonic: fromTonic,
+                supertonic: fromSupertonic,
+                mediant: fromMediant,
+                subdominant: fromSubdominant,
+                dominant: fromDominant,
+                submediant: fromSubmediant,
+                leadingtone: fromLeadingtone
+            },
+            minor: {
+                undefined: initializeChordSelection,
+                tonic: fromTonic,
+                supertonic: fromSupertonic,
+                mediant: fromMediant,
+                subdominant: fromSubdominant,
+                dominant: fromDominant,
+                submediant: fromSubmediant,
+                leadingtone: fromLeadingtoneMinor
+            }
+        },
+        false: {
+            Major: {
+                undefined: initializeChordSelection,
+                tonic: fromTonic,
+                supertonic: fromSupertonic,
+                mediant: fromMediant,
+                subdominant: fromSubdominant,
+                dominant: fromDominant,
+                submediant: fromSubmediant,
+                leadingtone: fromLeadingtone
+            },
+            minor: {
+                undefined: initializeChordSelection,
+                tonic: fromTonic,
+                supertonic: fromSupertonic,
+                mediant: fromMediant,
+                subdominant: fromSubdominant,
+                dominant: fromDominant,
+                submediant: fromSubmediant,
+                leadingtone: fromLeadingtoneMinor
+            }
+        }
+
+    }
 }
