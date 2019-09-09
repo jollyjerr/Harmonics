@@ -26,6 +26,7 @@ function sidebarEvents(event) {
 
 function openPickKeyMenu() {
     clearChordMenu()
+    cardHolder.style.height = "23%"
     keys.forEach(key => {
         let card = createSmallButton()
         card.textContent = `${key.name} ${key.mode}`

@@ -14,6 +14,7 @@ function processRecommendations() {
 }
 
 function changeCurrentKey(name, mode) {
+    cardHolder.style.height = "15%"
     previousKey = currentKey
     currentKey = keys.find(key => {
         return key.name === name && key.mode === mode
