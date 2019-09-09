@@ -1,6 +1,13 @@
 // controllers
 function initializeModulation() {
-
+    if (!cardHolder.firstChild) {
+        let options = allChordsFrom(currentKey)
+        if (modalBorrowing) {
+            options = options.concat(allChordsFrom(currentKey.parallel))
+        }
+        renderChordCards(options)
+    }
+    catchTonic()
 }
 
 function catchTonic() {

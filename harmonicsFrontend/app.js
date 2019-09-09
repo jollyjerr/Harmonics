@@ -7,7 +7,7 @@ let currentPhrase = [];
 function processRecommendations() {
     clearRecommendations()
     if (previousKey && previousKey !== currentKey) {
-        recommendations['modulation'][modalBorrowing][currentTonalState()][findChordsFunction(prevChord())]()
+        recommendations['modulation'][currentTonalState()][findChordsFunction(prevChord())]()
     } else {
         recommendations['tonal'][currentTonalState()][findChordsFunction(prevChord())]()
     }
@@ -104,51 +104,26 @@ function changeHarmonyEra(mode) {
 
 const recommendations = {
     modulation: {
-        true: {
-            Major: {
-                undefined: initializeModulation,
-                tonic: catchTonic,
-                supertonic: catchSupertonic,
-                mediant: catchMediant,
-                subdominant: catchSubdominant,
-                dominant: catchDominant,
-                submediant: catchSubmediant,
-                leadingtone: catchLeadingtone
-            },
-            minor: {
-                undefined: initializeModulation,
-                tonic: catchTonic,
-                supertonic: catchSupertonic,
-                mediant: catchMediant,
-                subdominant: catchSubdominant,
-                dominant: catchDominant,
-                submediant: catchSubmediant,
-                leadingtone: catchLeadingtone
-            }
+        Major: {
+            undefined: initializeModulation,
+            tonic: catchTonic,
+            supertonic: catchSupertonic,
+            mediant: catchMediant,
+            subdominant: catchSubdominant,
+            dominant: catchDominant,
+            submediant: catchSubmediant,
+            leadingtone: catchLeadingtone
         },
-        false: {
-            Major: {
-                undefined: initializeModulation,
-                tonic: catchTonic,
-                supertonic: catchSupertonic,
-                mediant: catchMediant,
-                subdominant: catchSubdominant,
-                dominant: catchDominant,
-                submediant: catchSubmediant,
-                leadingtone: catchLeadingtone
-            },
-            minor: {
-                undefined: initializeModulation,
-                tonic: catchTonic,
-                supertonic: catchSupertonic,
-                mediant: catchMediant,
-                subdominant: catchSubdominant,
-                dominant: catchDominant,
-                submediant: catchSubmediant,
-                leadingtone: catchLeadingtone
-            }
+        minor: {
+            undefined: initializeModulation,
+            tonic: catchTonic,
+            supertonic: catchSupertonic,
+            mediant: catchMediant,
+            subdominant: catchSubdominant,
+            dominant: catchDominant,
+            submediant: catchSubmediant,
+            leadingtone: catchLeadingtone
         }
-
     },
     tonal: {
         Major: {
@@ -171,25 +146,5 @@ const recommendations = {
             submediant: fromSubmediant,
             leadingtone: fromLeadingtoneMinor
         },
-        Major: {
-            undefined: initializeChordSelection,
-            tonic: fromTonic,
-            supertonic: fromSupertonic,
-            mediant: fromMediant,
-            subdominant: fromSubdominant,
-            dominant: fromDominant,
-            submediant: fromSubmediant,
-            leadingtone: fromLeadingtone
-        },
-        minor: {
-            undefined: initializeChordSelection,
-            tonic: fromTonic,
-            supertonic: fromSupertonic,
-            mediant: fromMediant,
-            subdominant: fromSubdominant,
-            dominant: fromDominant,
-            submediant: fromSubmediant,
-            leadingtone: fromLeadingtoneMinor
-        }
     }
 }
