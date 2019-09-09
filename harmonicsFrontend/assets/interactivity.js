@@ -53,10 +53,7 @@ function clearChordMenu() {
 
 function renderKeyOnSidebar() {
     let div = document.createElement('div')
-    div.classList.add('ui')
-    div.classList.add('mini')
-    div.classList.add('circular')
-    div.classList.add('segment')
+    addManyClasses(div, ['ui', 'mini', 'circular', 'segment'])
     div.textContent = `${currentKey.name} ${currentKey.mode}`
     sidebar.appendChild(div)
 }
@@ -78,26 +75,19 @@ function renderBasicChordCard(chord) {
 
 function createSmallButton() {
     let div = document.createElement('button')
-    div.classList.add('ui')
-    div.classList.add('mini')
-    div.classList.add('circular')
-    div.classList.add('button')
+    addManyClasses(div, ['ui', 'mini', 'circular', 'button'])
     return div
 }
 
 function createMedButton() {
     let div = document.createElement('button')
-    div.classList.add('ui')
-    div.classList.add('small')
-    div.classList.add('button')
+    addManyClasses(div, ['ui', 'small', 'button'])
     return div
 }
 
 function createLargeCard() {
     let div = document.createElement('div')
-    div.classList.add('ui')
-    div.classList.add('basic')
-    div.classList.add('segment')
+    addManyClasses(div, ['ui', 'basic', 'segment'])
     return div
 }
 
@@ -124,9 +114,7 @@ function clearScore() {
 }
 
 function darken(htmlElement) {
-    htmlElement.classList.add('ui')
-    htmlElement.classList.add('inverted')
-    htmlElement.classList.add('segment')
+    addManyClasses(htmlElement, ['ui', 'inverted', 'segment'])
 }
 
 function lighten(htmlElement) {
@@ -152,8 +140,12 @@ function renderTonalityForm() {
 
 function createSmallTitle() {
     let p = document.createElement('p')
-    p.classList.add('ui')
-    p.classList.add('inverted')
-    p.classList.add('header')
+    addManyClasses(p, ['ui', 'inverted', 'header'])
     return p
+}
+
+function addManyClasses(element, classArr) {
+    classArr.forEach(trait => {
+        element.classList.add(trait)
+    })
 }
