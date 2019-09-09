@@ -40,6 +40,11 @@ function openSettings() {
     renderTonalityForm()
 }
 
+function exitSettings() {
+    lighten(score)
+    renderPhrase(currentPhrase)
+}
+
 function displayCurrentKey() {
     removeKeyOnSidebar()
     renderKeyOnSidebar()
@@ -64,7 +69,6 @@ function removeKeyOnSidebar() {
         sidebar.removeChild(old) :
         undefined
 }
-
 
 function renderBasicChordCard(chord) {
     let div = createSmallButton()
@@ -118,6 +122,7 @@ function darken(htmlElement) {
 }
 
 function lighten(htmlElement) {
+    htmlElement.classList.remove('clearing')
     htmlElement.classList.remove('ui')
     htmlElement.classList.remove('inverted')
     htmlElement.classList.remove('segment')
@@ -136,10 +141,6 @@ function exitSettingsButton() {
     button.textContent = 'Back'
     button.addEventListener('click', exitSettings)
     return button
-}
-
-function exitSettings() {
-    console.log("hey gorl")
 }
 
 function createOptionSelection() {
@@ -162,8 +163,7 @@ function createModalSetting() {
     let p = createSmallTitle()
     p.innerText = "Modal Borrowing:"
     let button = createSmallButton()
-    button.textContent = "On"
-    addManyClasses(button, ['positive'])
+    renderModalBorrowingButton(button)
     button.addEventListener('click', () => alternateModalBorrowing(event.target))
     div.append(p, button)
     return div
@@ -183,6 +183,10 @@ function addManyClasses(element, classArr) {
 
 function alternateModalBorrowing(button) {
     modalBorrowing = !modalBorrowing
+    renderModalBorrowingButton(button)
+}
+
+function renderModalBorrowingButton(button) {
     if (modalBorrowing) {
         button.textContent = "On"
         button.classList.remove('negative')
@@ -192,4 +196,19 @@ function alternateModalBorrowing(button) {
         button.classList.remove('positive')
         button.classList.add('negative')
     }
+    return button
+}
+
+function renderChord(chordObj) {
+    let div = createMedButton()
+    div.textContent = `${chordObj.chord.name} ${chordObj.chord.type}`
+    div.addEventListener('click', () => removeChord(event, chordObj))
+    score.appendChild(div)
+}
+
+function renderPhrase(phraseArr) {
+    clearScore()
+    phraseArr.forEach(chord => {
+        renderChord(chord)
+    })
 }

@@ -30,10 +30,7 @@ function addChord(chord) {
         chord: chord,
         id: chordIdCounter
     }
-    let div = createMedButton()
-    div.textContent = `${chord.name} ${chord.type}`
-    div.addEventListener('click', () => removeChord(event, newChord))
-    score.appendChild(div)
+    renderChord(newChord)
     currentPhrase.push(newChord)
     processRecommendations()
 }
