@@ -50,7 +50,6 @@ const recommendations = {
 }
 
 function processRecommendations() {
-    console.log(findChordsFunction(prevChord()))
     clearRecommendations()
     if (previousKey && previousKey !== currentKey) {
         recommendations['modulation'][currentTonalState()][findChordsFunction(prevChord())]()

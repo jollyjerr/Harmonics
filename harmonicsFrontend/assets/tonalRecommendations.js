@@ -22,7 +22,7 @@ function fromMediant() {
 }
 
 function fromSubdominant() {
-    renderBasics([currentKey.dominant, currentKey.leadingtone])
+    renderBasics([currentKey.tonic, currentKey.dominant, currentKey.leadingtone])
     renderParallel([currentKey.parallel.submediant])
 }
 
