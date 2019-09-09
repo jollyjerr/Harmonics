@@ -1,7 +1,10 @@
 //controllers
 function initializeChordSelection() {
     if (!cardHolder.firstChild) {
-        let options = allChordsFrom(currentKey).concat(allChordsFrom(currentKey.parallel))
+        let options = allChordsFrom(currentKey)
+        if (modalBorrowing) {
+            options = options.concat(allChordsFrom(currentKey.parallel))
+        }
         renderChordCards(options)
     }
     fromTonic()

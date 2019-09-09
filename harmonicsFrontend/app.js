@@ -9,7 +9,7 @@ function processRecommendations() {
     if (previousKey && previousKey !== currentKey) {
         recommendations['modulation'][modalBorrowing][currentTonalState()][findChordsFunction(prevChord())]()
     } else {
-        recommendations['tonal'][modalBorrowing][currentTonalState()][findChordsFunction(prevChord())]()
+        recommendations['tonal'][currentTonalState()][findChordsFunction(prevChord())]()
     }
 }
 
@@ -151,50 +151,45 @@ const recommendations = {
 
     },
     tonal: {
-        true: {
-            Major: {
-                undefined: initializeChordSelection,
-                tonic: fromTonic,
-                supertonic: fromSupertonic,
-                mediant: fromMediant,
-                subdominant: fromSubdominant,
-                dominant: fromDominant,
-                submediant: fromSubmediant,
-                leadingtone: fromLeadingtone
-            },
-            minor: {
-                undefined: initializeChordSelection,
-                tonic: fromTonic,
-                supertonic: fromSupertonic,
-                mediant: fromMediant,
-                subdominant: fromSubdominant,
-                dominant: fromDominant,
-                submediant: fromSubmediant,
-                leadingtone: fromLeadingtoneMinor
-            }
+        Major: {
+            undefined: initializeChordSelection,
+            tonic: fromTonic,
+            supertonic: fromSupertonic,
+            mediant: fromMediant,
+            subdominant: fromSubdominant,
+            dominant: fromDominant,
+            submediant: fromSubmediant,
+            leadingtone: fromLeadingtone
         },
-        false: {
-            Major: {
-                undefined: initializeChordSelection,
-                tonic: fromTonic,
-                supertonic: fromSupertonic,
-                mediant: fromMediant,
-                subdominant: fromSubdominant,
-                dominant: fromDominant,
-                submediant: fromSubmediant,
-                leadingtone: fromLeadingtone
-            },
-            minor: {
-                undefined: initializeChordSelection,
-                tonic: fromTonic,
-                supertonic: fromSupertonic,
-                mediant: fromMediant,
-                subdominant: fromSubdominant,
-                dominant: fromDominant,
-                submediant: fromSubmediant,
-                leadingtone: fromLeadingtoneMinor
-            }
+        minor: {
+            undefined: initializeChordSelection,
+            tonic: fromTonic,
+            supertonic: fromSupertonic,
+            mediant: fromMediant,
+            subdominant: fromSubdominant,
+            dominant: fromDominant,
+            submediant: fromSubmediant,
+            leadingtone: fromLeadingtoneMinor
+        },
+        Major: {
+            undefined: initializeChordSelection,
+            tonic: fromTonic,
+            supertonic: fromSupertonic,
+            mediant: fromMediant,
+            subdominant: fromSubdominant,
+            dominant: fromDominant,
+            submediant: fromSubmediant,
+            leadingtone: fromLeadingtone
+        },
+        minor: {
+            undefined: initializeChordSelection,
+            tonic: fromTonic,
+            supertonic: fromSupertonic,
+            mediant: fromMediant,
+            subdominant: fromSubdominant,
+            dominant: fromDominant,
+            submediant: fromSubmediant,
+            leadingtone: fromLeadingtoneMinor
         }
-
     }
 }

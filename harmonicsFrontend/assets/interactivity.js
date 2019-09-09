@@ -183,6 +183,10 @@ function addManyClasses(element, classArr) {
 
 function alternateModalBorrowing(button) {
     modalBorrowing = !modalBorrowing
+    if (currentKey) {
+        clearChordMenu()
+        initializeChordSelection()
+    }
     renderModalBorrowingButton(button)
 }
 
