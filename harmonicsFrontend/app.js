@@ -136,3 +136,7 @@ function currentTonalState() {
 function diminishedFilter(chord) {
     return chord.type === "diminished" ? currentKey.mode : chord.type
 }
+
+function changeHarmonyEra(mode) {
+    alert(mode)
+}

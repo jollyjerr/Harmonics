@@ -34,6 +34,12 @@ function openPickKeyMenu() {
     })
 }
 
+function openSettings() {
+    clearScore()
+    darken(score)
+    renderTonalityForm()
+}
+
 function displayCurrentKey() {
     removeKeyOnSidebar()
     renderKeyOnSidebar()
@@ -62,9 +68,6 @@ function removeKeyOnSidebar() {
         undefined
 }
 
-function openSettings() {
-    alert("There are no settings yet, yo")
-}
 
 function renderBasicChordCard(chord) {
     let div = createSmallButton()
@@ -90,6 +93,14 @@ function createMedButton() {
     return div
 }
 
+function createLargeCard() {
+    let div = document.createElement('div')
+    div.classList.add('ui')
+    div.classList.add('basic')
+    div.classList.add('segment')
+    return div
+}
+
 function play() {
     let interval = 1500
     currentPhrase.forEach(function(chord, index) {
@@ -104,4 +115,45 @@ function playChord(chord) {
         src: [chord.sound]
     })
     sound.play()
+}
+
+function clearScore() {
+    while (score.firstChild) {
+        score.removeChild(score.firstChild)
+    }
+}
+
+function darken(htmlElement) {
+    htmlElement.classList.add('ui')
+    htmlElement.classList.add('inverted')
+    htmlElement.classList.add('segment')
+}
+
+function lighten(htmlElement) {
+    htmlElement.classList.remove('ui')
+    htmlElement.classList.remove('inverted')
+    htmlElement.classList.remove('segment')
+}
+
+function renderTonalityForm() {
+    let options = ['Common Practice', '20th Century']
+    let div = createLargeCard()
+    let p = createSmallTitle()
+    p.innerText = 'Recommend by:'
+    div.append(p)
+    options.forEach(mode => {
+        let button = createMedButton()
+        button.innerText = mode
+        button.addEventListener('click', () => changeHarmonyEra(mode))
+        div.appendChild(button)
+    })
+    score.appendChild(div)
+}
+
+function createSmallTitle() {
+    let p = document.createElement('p')
+    p.classList.add('ui')
+    p.classList.add('inverted')
+    p.classList.add('header')
+    return p
 }
