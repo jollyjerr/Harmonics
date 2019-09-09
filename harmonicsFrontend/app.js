@@ -1,6 +1,7 @@
 let previousKey = undefined;
 let currentKey = undefined;
 let currentPhrase = [];
+let chordIdCounter = 0;
 
 const recommendations = {
     modulation: {
@@ -70,22 +71,31 @@ function changeCurrentKey(name, mode) {
 }
 
 function addChord(chord) {
+    chordIdCounter += 1
+    let newChord = {
+        chord: chord,
+        id: chordIdCounter
+    }
     let div = createMedButton()
     div.textContent = `${chord.name} ${chord.type}`
-    div.addEventListener('click', () => removeChord(event, chord))
+    div.addEventListener('click', () => removeChord(event, newChord))
     score.appendChild(div)
-    currentPhrase.push(chord)
+    currentPhrase.push(newChord)
     processRecommendations()
 }
 
 function removeChord(event, sadChord) {
-    currentPhrase = currentPhrase.filter(chord => chord !== sadChord)
+    currentPhrase = currentPhrase.filter(chord => chord.id !== sadChord.id)
     event.target.remove()
     processRecommendations()
 }
 
 function prevChord() {
-    return currentPhrase.slice(-1)[0]
+    if (currentPhrase.length >= 1) {
+        return currentPhrase.slice(-1)[0]["chord"]
+    } else {
+        return currentPhrase.slice(-1)[0]
+    }
 }
 
 function findChordsFunction(chord) {

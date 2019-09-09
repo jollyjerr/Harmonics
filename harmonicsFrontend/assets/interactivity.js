@@ -95,7 +95,7 @@ function play() {
     let interval = 1500
     currentPhrase.forEach(function(chord, index) {
         setTimeout(function() {
-            playChord(chord)
+            playChord(chord["chord"])
         }, index * interval);
     });
 }
