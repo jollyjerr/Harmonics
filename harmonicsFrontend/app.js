@@ -120,7 +120,7 @@ const recommendations = {
             leadingtone: catchLeadingtone
         },
         minor: {
-            undefined: initializeModulation,
+            undefined: catchTonic,
             tonic: catchTonic,
             supertonic: catchSupertonic,
             mediant: catchMediant,
