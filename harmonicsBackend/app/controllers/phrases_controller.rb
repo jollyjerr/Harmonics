@@ -13,7 +13,7 @@ class PhrasesController < ApplicationController
         phrase = Phrase.create(phrase_params)
         if phrase.save
             render json: phrase
-        else    
+        else  
             puts phrase
         end
     end
@@ -35,6 +35,6 @@ class PhrasesController < ApplicationController
     private
 
     def phrase_params
-        params.require(:phrase).permit(:name, :description, :content)
+        params.require(:phrase).permit(:name, :content)
     end
 end

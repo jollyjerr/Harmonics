@@ -4,6 +4,8 @@ const sidebarButton = document.querySelector('nav button')
 const cardHolder = document.querySelector('#card_holder')
 const score = document.querySelector('#score')
 
+let BackendURL = 'http://localhost:3000/phrases'
+
 
 sidebar.addEventListener('click', () => sidebarEvents(event))
 playButton.addEventListener('click', play)
@@ -17,6 +19,9 @@ function sidebarEvents(event) {
                 break;
             case "Settings":
                 openSettings()
+                break;
+            case "Save Phrase":
+                openSavePhraseMenu()
                 break;
         }
     } else {
@@ -42,6 +47,12 @@ function openSettings() {
     renderTonalityForm()
 }
 
+function openSavePhraseMenu() {
+    clearScore()
+    darken(score)
+    renderPhraseForm()
+}
+
 function exitSettings() {
     lighten(score)
     renderPhrase(currentPhrase)
@@ -52,65 +63,13 @@ function displayCurrentKey() {
     renderKeyOnSidebar()
 }
 
-function clearChordMenu() {
-    while (cardHolder.firstChild) {
-        cardHolder.removeChild(cardHolder.firstChild);
+function saveCurrentPhrase(name) {
+    if (currentPhrase.length >= 1) {
+        fetch(BackendURL, postPhraseObjectFrom(currentPhrase, name))
+    } else {
+        alert("John Cage has ownership")
     }
-}
-
-function renderKeyOnSidebar() {
-    let div = document.createElement('div')
-    addManyClasses(div, ['ui', 'mini', 'circular', 'segment'])
-    div.textContent = `${currentKey.name} ${currentKey.mode}`
-    sidebar.appendChild(div)
-}
-
-function removeKeyOnSidebar() {
-    let old = document.querySelector('.ui.mini.circular.segment')
-    old ?
-        sidebar.removeChild(old) :
-        undefined
-}
-
-function renderBasicChordCard(chord) {
-    let div = createSmallButton()
-    div.textContent = `${chord.name} ${chord.type}`
-    div.addEventListener('click', () => addChord(chord))
-    cardHolder.appendChild(div)
-}
-
-function createSmallButton() {
-    let div = document.createElement('button')
-    addManyClasses(div, ['ui', 'mini', 'circular', 'button'])
-    return div
-}
-
-function createMedButton() {
-    let div = document.createElement('button')
-    addManyClasses(div, ['ui', 'small', 'button'])
-    return div
-}
-
-function createLargeCard() {
-    let div = document.createElement('div')
-    addManyClasses(div, ['ui', 'basic', 'segment'])
-    return div
-}
-
-function play() {
-    let interval = 1500
-    currentPhrase.forEach(function(chord, index) {
-        setTimeout(function() {
-            playChord(chord["chord"])
-        }, index * interval);
-    });
-}
-
-function playChord(chord) {
-    let sound = new Howl({
-        src: [chord.sound]
-    })
-    sound.play()
+    exitSettings()
 }
 
 function clearScore() {
@@ -135,6 +94,37 @@ function renderTonalityForm() {
     score.appendChild(createOptionSelection())
     score.appendChild(createModalSetting())
     score.appendChild(exitSettingsButton())
+}
+
+function renderPhraseForm() {
+    score.classList.add('clearing')
+    score.appendChild(phraseNameForm())
+    score.appendChild(phraseFormBackButton())
+    score.appendChild(savePhraseButton())
+}
+
+function phraseNameForm() {
+    let div = createLargeForm()
+    let p = createSmallTitle()
+    let input = document.createElement('input')
+    p.innerText = 'Name:'
+    div.append(p, input)
+    return div
+}
+
+function phraseFormBackButton() {
+    let button = createSmallButton()
+    button.textContent = "Back"
+    button.addEventListener('click', exitSettings)
+    return button
+}
+
+function savePhraseButton() {
+    let button = createSmallButton()
+    addManyClasses(button, ['positive', 'right', 'floated'])
+    button.textContent = "Save"
+    button.addEventListener('submit', () => saveCurrentPhrase(event.target))
+    return button
 }
 
 function exitSettingsButton() {
@@ -217,4 +207,88 @@ function renderPhrase(phraseArr) {
     phraseArr.forEach(chord => {
         renderChord(chord)
     })
+}
+
+function postPhraseObjectFrom(phraseArr, name) {
+    let serialized = phraseArr.map(chordObj => {
+        return `${chordObj.chord.name} ${chordObj.chord.type}`
+    })
+    let obj = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            content: serialized.join()
+        })
+    }
+    return obj;
+}
+
+function clearChordMenu() {
+    while (cardHolder.firstChild) {
+        cardHolder.removeChild(cardHolder.firstChild);
+    }
+}
+
+function renderKeyOnSidebar() {
+    let div = document.createElement('div')
+    addManyClasses(div, ['ui', 'mini', 'circular', 'segment'])
+    div.textContent = `${currentKey.name} ${currentKey.mode}`
+    sidebar.appendChild(div)
+}
+
+function removeKeyOnSidebar() {
+    let old = document.querySelector('.ui.mini.circular.segment')
+    old ?
+        sidebar.removeChild(old) :
+        undefined
+}
+
+function renderBasicChordCard(chord) {
+    let div = createSmallButton()
+    div.textContent = `${chord.name} ${chord.type}`
+    div.addEventListener('click', () => addChord(chord))
+    cardHolder.appendChild(div)
+}
+
+function createSmallButton() {
+    let div = document.createElement('button')
+    addManyClasses(div, ['ui', 'mini', 'circular', 'button'])
+    return div
+}
+
+function createMedButton() {
+    let div = document.createElement('button')
+    addManyClasses(div, ['ui', 'small', 'button'])
+    return div
+}
+
+function createLargeCard() {
+    let div = document.createElement('div')
+    addManyClasses(div, ['ui', 'basic', 'segment'])
+    return div
+}
+
+function createLargeForm() {
+    let form = document.createElement('form')
+    addManyClasses(form, ['ui', 'basic', 'segment'])
+    return form
+}
+
+function play() {
+    let interval = 1500
+    currentPhrase.forEach(function(chord, index) {
+        setTimeout(function() {
+            playChord(chord["chord"])
+        }, index * interval);
+    });
+}
+
+function playChord(chord) {
+    let sound = new Howl({
+        src: [chord.sound]
+    })
+    sound.play()
 }

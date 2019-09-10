@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2019_09_10_145218) do
 
   create_table "phrases", force: :cascade do |t|
     t.string "name"
-    t.string "description"
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
