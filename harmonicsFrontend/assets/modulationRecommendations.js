@@ -7,38 +7,44 @@ function initializeModulation() {
         }
         renderChordCards(options)
     }
-    catchTonic()
 }
 
 function catchTonic() {
-    renderBasics([currentKey.tonic, currentKey.supertonic, currentKey.mediant, currentKey.subdominant, currentKey.dominant, currentKey.submediant, currentKey.leadingtone])
-    renderParallel([currentKey.parallel.tonic, currentKey.parallel.subdominant, currentKey.parallel.mediant, currentKey.parallel.submediant])
+    renderBasics([currentKey.subdominant, currentKey.dominant, currentKey.leadingtone])
+    renderParallel([])
+    previousKey = currentKey
 }
 
 function catchSupertonic() {
-    renderBasics([currentKey.dominant, currentKey.leadingtone])
-    renderParallel([currentKey.parallel.submediant])
+    renderBasics([currentKey.dominant])
+    renderParallel([])
+    previousKey = currentKey
 }
 
 function catchMediant() {
-    renderBasics([currentKey.submediant])
+    renderBasics([currentKey.supertonic, currentKey.subdominant])
+    previousKey = currentKey
 }
 
 function catchSubdominant() {
     renderBasics([currentKey.dominant, currentKey.leadingtone])
-    renderParallel([currentKey.parallel.submediant])
+    renderParallel([])
+    previousKey = currentKey
 }
 
 function catchDominant() {
     renderBasics([currentKey.tonic, currentKey.submediant])
+    previousKey = currentKey
 }
 
 function catchSubmediant() {
-    renderBasics([currentKey.supertonic, currentKey.dominant, currentKey.subdominant])
+    renderBasics([currentKey.dominant])
+    previousKey = currentKey
 }
 
 function catchLeadingtone() {
-    renderBasics([currentKey.mediant, currentKey.tonic])
+    renderBasics([currentKey.submediant, currentKey.tonic])
+    previousKey = currentKey
 }
 
 

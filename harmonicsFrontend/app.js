@@ -7,6 +7,7 @@ let currentPhrase = [];
 function processRecommendations() {
     clearRecommendations()
     if (previousKey && previousKey !== currentKey) {
+        initializeModulation()
         recommendations['modulation'][currentTonalState()][findChordsFunction(prevChord())]()
     } else {
         recommendations['tonal'][currentTonalState()][findChordsFunction(prevChord())]()
@@ -82,6 +83,9 @@ function establishKeyRelationships() {
         let desiredMode = currentKey.mode === "Major" ? "minor" : "Major"
         currentKey.setParallel(keys.filter(key => key.name === currentKey.name && key.mode === desiredMode)[0])
     }
+    if (!currentKey.parallel) {
+        currentKey.setParallel(ASm)
+    }
 }
 
 function allChordsFrom(key) {
@@ -106,7 +110,7 @@ function changeHarmonyEra(mode) {
 const recommendations = {
     modulation: {
         Major: {
-            undefined: initializeModulation,
+            undefined: catchTonic,
             tonic: catchTonic,
             supertonic: catchSupertonic,
             mediant: catchMediant,
