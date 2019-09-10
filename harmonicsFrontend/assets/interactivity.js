@@ -25,14 +25,15 @@ function sidebarEvents(event) {
 }
 
 function openPickKeyMenu() {
-    clearChordMenu()
-    cardHolder.style.height = "30%"
-    keys.forEach(key => {
-        let card = createSmallButton()
-        card.textContent = `${key.name} ${key.mode}`
-        card.addEventListener('click', () => changeCurrentKey(key.name, key.mode))
-        cardHolder.append(card)
-    })
+    if (!score.classList.contains('inverted')) {
+        clearChordMenu()
+        keys.forEach(key => {
+            let card = createSmallButton()
+            card.textContent = `${key.name} ${key.mode}`
+            card.addEventListener('click', () => changeCurrentKey(key.name, key.mode))
+            cardHolder.append(card)
+        })
+    }
 }
 
 function openSettings() {
