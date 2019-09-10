@@ -261,19 +261,3 @@ function createLargeForm() {
     addManyClasses(form, ['ui', 'basic', 'segment'])
     return form
 }
-
-function play() {
-    let interval = 1500
-    currentPhrase.forEach(function(chord, index) {
-        setTimeout(function() {
-            playChord(chord["chord"])
-        }, index * interval);
-    });
-}
-
-function playChord(chord) {
-    let sound = new Howl({
-        src: [chord.sound]
-    })
-    sound.play()
-}
