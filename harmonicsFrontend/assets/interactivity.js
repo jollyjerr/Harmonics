@@ -48,9 +48,11 @@ function openSettings() {
 }
 
 function openSavePhraseMenu() {
-    clearScore()
-    darken(score)
-    renderPhraseForm()
+    if (currentPhrase.length >= 1) {
+        clearScore()
+        darken(score)
+        renderPhraseForm()
+    }
 }
 
 function exitSettings() {
@@ -64,11 +66,7 @@ function displayCurrentKey() {
 }
 
 function saveCurrentPhrase(name) {
-    if (currentPhrase.length >= 1) {
-        fetch(BackendURL, postPhraseObjectFrom(currentPhrase, name))
-    } else {
-        alert("John Cage has ownership")
-    }
+    fetch(BackendURL, postPhraseObjectFrom(currentPhrase, name))
     exitSettings()
 }
 
@@ -123,7 +121,10 @@ function savePhraseButton() {
     let button = createSmallButton()
     addManyClasses(button, ['positive', 'right', 'floated'])
     button.textContent = "Save"
-    button.addEventListener('submit', () => saveCurrentPhrase(event.target))
+    button.addEventListener('click', () => {
+        let name = event.target.parentElement.querySelector('input').value
+        saveCurrentPhrase(name)
+    })
     return button
 }
 
@@ -207,23 +208,6 @@ function renderPhrase(phraseArr) {
     phraseArr.forEach(chord => {
         renderChord(chord)
     })
-}
-
-function postPhraseObjectFrom(phraseArr, name) {
-    let serialized = phraseArr.map(chordObj => {
-        return `${chordObj.chord.name} ${chordObj.chord.type}`
-    })
-    let obj = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            name: name,
-            content: serialized.join()
-        })
-    }
-    return obj;
 }
 
 function clearChordMenu() {
