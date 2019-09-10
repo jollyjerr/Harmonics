@@ -32,6 +32,7 @@ function sidebarEvents(event) {
 function openPickKeyMenu() {
     if (!score.classList.contains('inverted')) {
         clearChordMenu()
+        clearScore()
         keys.forEach(key => {
             let card = createSmallButton()
             card.textContent = `${key.name} ${key.mode}`

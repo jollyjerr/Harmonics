@@ -20,6 +20,7 @@ function changeCurrentKey(name, mode) {
     currentKey = keys.find(key => {
         return key.name === name && key.mode === mode
     })
+    renderPhrase(currentPhrase)
     establishKeyRelationships()
     clearChordMenu()
     displayCurrentKey()
