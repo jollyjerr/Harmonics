@@ -1,8 +1,11 @@
 const playButton = document.querySelector('#play_button')
 const sidebar = document.querySelector('#sidebar_container')
+const composingTable = document.querySelector('#composing_table')
 const sidebarButton = document.querySelector('nav button')
 const cardHolder = document.querySelector('#card_holder')
 const score = document.querySelector('#score')
+const loginForm = document.querySelector('#loginForm')
+const signupForm = document.querySelector('#signupForm')
 
 let BackendURL = 'http://localhost:3000/phrases'
 
@@ -56,6 +59,29 @@ function openSavePhraseMenu() {
     }
 }
 
+function initiateLogin() {
+    clearComposingScreen()
+    renderLoginForms()
+    loginForm.addEventListener('submit', login)
+    signupForm.addEventListener('submit', signup)
+}
+
+function login() {
+    event.preventDefault()
+    let formData = new FormData(loginForm)
+    let name = formData.get('name')
+    let password = formData.get('password')
+    loginUser(name, password)
+}
+
+function signup() {
+    event.preventDefault()
+    let formData = new FormData(signupForm)
+    let name = formData.get('name')
+    let password = formData.get('password')
+    newUser(name, password)
+}
+
 function exitSettings() {
     lighten(score)
     renderPhrase(currentPhrase)
@@ -75,6 +101,26 @@ function clearScore() {
     while (score.firstChild) {
         score.removeChild(score.firstChild)
     }
+}
+
+function clearComposingScreen() {
+    composingTable.style.display = "none"
+    sidebar.style.display = "none"
+}
+
+function renderComposingScreen() {
+    composingTable.style.display = ""
+    sidebar.style.display = ""
+}
+
+function renderLoginForms() {
+    loginForm.style.display = "block"
+    signupForm.style.display = "block"
+}
+
+function clearLoginForms() {
+    loginForm.style.display = "none"
+    signupForm.style.display = "none"
 }
 
 function darken(htmlElement) {

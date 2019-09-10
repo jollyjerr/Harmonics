@@ -14,6 +14,20 @@ function playChord(chord) {
     sound.play()
 }
 
+function requireLogin() {
+    userToken ?
+        console.log(userToken) :
+        initiateLogin()
+}
+
+function newUser(name, password) {
+
+}
+
+function loginUser(name, password) {
+
+}
+
 function postPhraseObjectFrom(phraseArr, name) {
     let serialized = phraseArr.map(chordObj => {
         return `${chordObj.chord.name} ${chordObj.chord.type}`

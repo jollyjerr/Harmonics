@@ -27,6 +27,14 @@ nav img {
     height: 100%;
 }
 
+#loginForm {
+    display: none;
+}
+
+#signupForm {
+    display: none;
+}
+
 #composing_table {
     width: 80%;
 }

@@ -1,3 +1,7 @@
+let userToken = localStorage.getItem("jwt")
+
+requireLogin()
+
 let previousKey = undefined;
 let currentKey = undefined;
 let modalBorrowing = true;
