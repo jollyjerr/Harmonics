@@ -1,5 +1,5 @@
-let BackendURL = 'http://localhost:3000/phrases'
-let UserURL = 'http://localhost:3000/users'
+let BackendURL = 'http://localhost:3000/phrases/'
+let UserURL = 'http://localhost:3000/users/'
 let loginURL = 'http://localhost:3000/login'
 let reloginURL = 'http://localhost:3000/relogin'
 
@@ -110,4 +110,14 @@ function postPhraseObjectFrom(phraseArr, name) {
         })
     }
     return obj;
+}
+
+function fetchUserPhrases() {
+    return fetch(BackendURL + currentUser, {
+            method: "GET",
+            headers: {
+                "accepts": "application/json"
+            }
+        })
+        .then(resp => resp.json())
 }

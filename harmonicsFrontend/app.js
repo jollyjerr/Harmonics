@@ -1,7 +1,7 @@
-let userToken = undefined
-let currentUser = undefined
+let userToken = undefined;
+let currentUser = undefined;
 
-establishCurrentUser()
+establishCurrentUser();
 
 let previousKey = undefined;
 let currentKey = undefined;

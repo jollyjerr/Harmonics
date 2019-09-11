@@ -52,3 +52,7 @@ nav img {
     width: 100%;
     height: 15%;
 }
+
+#signOut {
+    color: rgb(254, 212, 156);
+}

@@ -5,8 +5,8 @@ class PhrasesController < ApplicationController
     end
 
     def show
-        phrase = Phrase.all.find(params[:id])
-        render json: phrase
+        phrases = User.all.find(params[:id]).phrases
+        render json: phrases
     end
 
     def create

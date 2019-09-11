@@ -28,6 +28,9 @@ function sidebarEvents(event) {
             case "Save Phrase":
                 openSavePhraseMenu()
                 break;
+            case "Load Phrase":
+                openLoadPhraseMenu()
+                break;
             case "Sign Out":
                 signOut()
                 break;
@@ -62,6 +65,13 @@ function openSavePhraseMenu() {
         darken(score)
         renderPhraseForm()
     }
+}
+
+function openLoadPhraseMenu() {
+    clearScore()
+    fetchUserPhrases()
+        .then(convertToStandardPhraseFormat)
+        .then(renderLoadPhraseListItems)
 }
 
 function initiateLogin() {
@@ -263,6 +273,41 @@ function renderPhrase(phraseArr) {
     clearScore()
     phraseArr.forEach(chord => {
         renderChord(chord)
+    })
+}
+
+function renderLoadPhraseListItems(phraseArr) {
+    // let currentForDisplay = {
+    //     name: "Current Phrase",
+    //     content: currentPhrase
+    // }
+    phraseArr.forEach(renderOldPhrase)
+}
+
+function renderOldPhrase(phraseObj) {
+    let div = createLargeCard()
+    let p = createSmallTitle()
+    p.textContent = phraseObj.name
+
+    div.append(p)
+    score.appendChild(div)
+}
+
+function convertToStandardPhraseFormat(DBphrases) {
+    return DBphrases.map(object => {
+        let phrase = object.content.split(',')
+        let parsedPhrase = phrase.map(chord => {
+            let name = chord.split(' ')[0]
+            let type = chord.split(' ')[1]
+            return chords.find(c => {
+                return c.name === name && c.type === type
+            })
+        })
+        let namedPhrase = {
+            name: object.name,
+            phrase: parsedPhrase
+        }
+        return namedPhrase
     })
 }
 
