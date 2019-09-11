@@ -86,12 +86,24 @@ function grabNodesFromChords(chordsArr) {
 }
 
 function establishKeyRelationships() {
+    let desiredMode = currentKey.mode === "Major" ? "minor" : "Major"
     if (!currentKey.parallel) {
-        let desiredMode = currentKey.mode === "Major" ? "minor" : "Major"
         currentKey.setParallel(keys.filter(key => key.name === currentKey.name && key.mode === desiredMode)[0])
     }
     if (!currentKey.parallel) {
-        currentKey.setParallel(ASm)
+        let exceptions = {
+            "C#": "Db",
+            "Db": "C#",
+            "Bb": "A#",
+            "A#": "Bb",
+            "D#": "Eb",
+            "Eb": "D#",
+            "F#": "Gb",
+            "Gb": "F#",
+            "G#": "Ab",
+            "Ab": "G#"
+        }
+        currentKey.setParallel(keys.filter(key => key.name === exceptions[currentKey.name] && key.mode === desiredMode)[0])
     }
 }
 
