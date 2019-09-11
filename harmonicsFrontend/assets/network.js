@@ -28,7 +28,6 @@ function establishCurrentUser() {
 }
 
 function reLoginUser(jwt) {
-    console.log("jwt", jwt)
     fetch(reloginURL, {
             method: "GET",
             headers: {
@@ -44,7 +43,7 @@ function reLoginUser(jwt) {
 }
 
 function requireLogin() {
-    console.log("require login", userToken)
+    userToken = localStorage.jwt
     userToken ?
         acceptLoggedInUser() :
         initiateLogin()

@@ -1,5 +1,5 @@
 let currentUser = undefined
-let userToken = null
+let userToken = undefined
 
 establishCurrentUser()
 
