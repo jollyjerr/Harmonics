@@ -20,8 +20,6 @@ class UsersController < ApplicationController
         if user.authenticate(params["password"])
             token = JsonWebToken.encode({user_id: user.id})
             render json: {token: token}
-        else
-            render status: :unauthorized
         end
     end
 

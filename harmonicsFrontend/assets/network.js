@@ -69,7 +69,7 @@ function newUser(name, password) {
 
 function loginUser(name, password) {
     fetch(loginURL, {
-            method: "GET",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -80,8 +80,12 @@ function loginUser(name, password) {
         })
         .then(resp => resp.json())
         .then(response => {
-            localStorage.setItem("jwt", response.token)
-            establishCurrentUser()
+            if (response.token) {
+                localStorage.setItem("jwt", response.token)
+                establishCurrentUser()
+            } else {
+                renderFailedLoginMessage()
+            }
         })
 }
 

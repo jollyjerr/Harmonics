@@ -16,7 +16,6 @@ function acceptLoggedInUser() {
     renderComposingScreen()
 }
 
-
 function sidebarEvents(event) {
     if (event.target.classList.contains('item')) {
         switch (event.target.textContent) {
@@ -112,6 +111,10 @@ function clearScore() {
 function clearComposingScreen() {
     composingTable.style.display = "none"
     sidebar.style.display = "none"
+}
+
+function renderFailedLoginMessage() {
+    alert("Username or Password was incorrect")
 }
 
 function renderComposingScreen() {
