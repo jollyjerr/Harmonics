@@ -1,7 +1,7 @@
 let currentUser = undefined
-let userToken = establishCurrentUser()
+let userToken = null
 
-requireLogin()
+establishCurrentUser()
 
 let previousKey = undefined;
 let currentKey = undefined;

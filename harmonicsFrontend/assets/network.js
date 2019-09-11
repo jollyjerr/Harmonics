@@ -22,13 +22,13 @@ function playChord(chord) {
 function establishCurrentUser() {
     if (localStorage.jwt) {
         reLoginUser(localStorage.jwt)
-        return localStorage.jwt
     } else {
-        return null
+        requireLogin()
     }
 }
 
 function reLoginUser(jwt) {
+    console.log("jwt", jwt)
     fetch(reloginURL, {
             method: "GET",
             headers: {
@@ -39,11 +39,12 @@ function reLoginUser(jwt) {
         .then(resp => resp.json())
         .then(json => {
             currentUser = json.user_id
-            requireLogin()
         })
+    requireLogin()
 }
 
 function requireLogin() {
+    console.log("require login", userToken)
     userToken ?
         acceptLoggedInUser() :
         initiateLogin()
