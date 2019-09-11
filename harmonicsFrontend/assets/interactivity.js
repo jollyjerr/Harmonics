@@ -69,6 +69,7 @@ function openSavePhraseMenu() {
 
 function openLoadPhraseMenu() {
     clearScore()
+    clearChordMenu()
     fetchUserPhrases()
         .then(convertToStandardPhraseFormat)
         .then(renderLoadPhraseListItems)
