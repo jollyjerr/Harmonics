@@ -25,6 +25,7 @@ nav img {
 
 .ui.two.column.grid {
     height: 100%;
+    font-family: 'Muli', serif;
 }
 
 #loginForm {
