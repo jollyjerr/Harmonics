@@ -85,6 +85,11 @@ function loginUser(name, password) {
         })
 }
 
+function signOut() {
+    localStorage.removeItem("jwt")
+    establishCurrentUser()
+}
+
 function postPhraseObjectFrom(phraseArr, name) {
     let serialized = phraseArr.map(chordObj => {
         return `${chordObj.chord.name} ${chordObj.chord.type}`

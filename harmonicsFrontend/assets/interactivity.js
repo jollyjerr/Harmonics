@@ -29,6 +29,9 @@ function sidebarEvents(event) {
             case "Save Phrase":
                 openSavePhraseMenu()
                 break;
+            case "Sign Out":
+                signOut()
+                break;
         }
     } else {
         console.warn("event triggered without handler")

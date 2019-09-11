@@ -21,7 +21,7 @@ class UsersController < ApplicationController
             token = JsonWebToken.encode({user_id: user.id})
             render json: {token: token}
         else
-            puts user
+            render status: :unauthorized
         end
     end
 
