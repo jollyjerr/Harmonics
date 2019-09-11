@@ -1,4 +1,5 @@
-let userToken = localStorage.getItem("jwt")
+let currentUser = undefined
+let userToken = establishCurrentUser()
 
 requireLogin()
 

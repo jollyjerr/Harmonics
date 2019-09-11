@@ -1,3 +1,8 @@
+let BackendURL = 'http://localhost:3000/phrases'
+let UserURL = 'http://localhost:3000/users'
+let loginURL = 'http://localhost:3000/login'
+let reloginURL = 'http://localhost:3000/relogin'
+
 function play() {
     let interval = 1500
     currentPhrase.forEach(function(chord, index) {
@@ -14,18 +19,70 @@ function playChord(chord) {
     sound.play()
 }
 
+function establishCurrentUser() {
+    if (localStorage.jwt) {
+        reLoginUser(localStorage.jwt)
+        return localStorage.jwt
+    } else {
+        return null
+    }
+}
+
+function reLoginUser(jwt) {
+    fetch(reloginURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: jwt
+            }
+        })
+        .then(resp => resp.json())
+        .then(json => {
+            currentUser = json.user_id
+            requireLogin()
+        })
+}
+
 function requireLogin() {
     userToken ?
-        console.log(userToken) :
+        acceptLoggedInUser() :
         initiateLogin()
 }
 
 function newUser(name, password) {
-
+    fetch(UserURL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "name": name,
+                "password": password
+            })
+        })
+        .then(resp => resp.json())
+        .then((response) => {
+            localStorage.setItem("jwt", response.token)
+            establishCurrentUser()
+        })
 }
 
 function loginUser(name, password) {
-
+    fetch(loginURL, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                password: password
+            })
+        })
+        .then(resp => resp.json())
+        .then(response => {
+            localStorage.setItem("jwt", response.token)
+            establishCurrentUser()
+        })
 }
 
 function postPhraseObjectFrom(phraseArr, name) {

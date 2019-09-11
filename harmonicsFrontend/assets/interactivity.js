@@ -7,11 +7,14 @@ const score = document.querySelector('#score')
 const loginForm = document.querySelector('#loginForm')
 const signupForm = document.querySelector('#signupForm')
 
-let BackendURL = 'http://localhost:3000/phrases'
-
 
 sidebar.addEventListener('click', () => sidebarEvents(event))
 playButton.addEventListener('click', play)
+
+function acceptLoggedInUser() {
+    clearLoginForms()
+    renderComposingScreen()
+}
 
 
 function sidebarEvents(event) {
