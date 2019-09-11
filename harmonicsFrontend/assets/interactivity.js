@@ -12,8 +12,16 @@ sidebar.addEventListener('click', () => sidebarEvents(event))
 playButton.addEventListener('click', play)
 
 function acceptLoggedInUser() {
+    currentPhrase = []
+    previousKey = undefined
+    currentKey = undefined
+    modalBorrowing = true
+    chordIdCounter = 0
+    currentPhrase = []
     clearLoginForms()
     renderComposingScreen()
+    clearChordMenu()
+    clearScore()
 }
 
 function sidebarEvents(event) {
@@ -68,7 +76,6 @@ function openSavePhraseMenu() {
 }
 
 function openLoadPhraseMenu() {
-    cardHolder.style.display = "none"
     clearScore()
     fetchUserPhrases()
         .then(convertToStandardPhraseFormat)
@@ -278,22 +285,29 @@ function renderPhrase(phraseArr) {
 }
 
 function renderLoadPhraseListItems(phraseArr) {
-    phraseArr.forEach(renderOldPhrase)
+    if (phraseArr.length >= 1) {
+        cardHolder.style.display = "none"
+        phraseArr.forEach(renderOldPhrase)
+    }
 }
 
 function renderOldPhrase(phraseObj) {
-    console.log(phraseObj)
     let div = createLargeCard()
     let p = createSmallButton()
+    let d = createSmallButton()
     p.textContent = phraseObj.name
+    d.textContent = "Delete"
     addManyClasses(p, ['fluid'])
+    addManyClasses(d, ['negative', 'compact', 'left', 'floated'])
     p.addEventListener('click', () => changeCurrentPhrase(phraseObj.phrase, phraseObj.key))
+    d.addEventListener('click', () => deleteSavedPhrase(phraseObj.id))
     div.append(p)
     phraseObj.phrase.forEach(chord => {
         div.append(
             document.createElement('p').textContent = `${chord.name} ${chord.type} `
         )
     })
+    div.append(d)
     addManyClasses(div, ['ui', 'raised', 'segment'])
     score.appendChild(div)
 }
@@ -322,6 +336,7 @@ function convertToStandardPhraseFormat(DBphrases) {
             return k.name === keyName && k.mode === keyMode
         })
         let namedPhrase = {
+            id: object.id,
             name: object.name,
             key: parsedKey,
             phrase: parsedPhrase

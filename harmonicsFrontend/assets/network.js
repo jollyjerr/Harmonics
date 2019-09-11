@@ -122,3 +122,8 @@ function fetchUserPhrases() {
         })
         .then(resp => resp.json())
 }
+
+function deleteSavedPhrase(id) {
+    fetch(BackendURL + id, { method: "DELETE" })
+    event.target.parentElement.remove()
+}

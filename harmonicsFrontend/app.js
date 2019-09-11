@@ -1,13 +1,14 @@
 let userToken = undefined;
 let currentUser = undefined;
 
-establishCurrentUser();
-
 let previousKey = undefined;
 let currentKey = undefined;
 let modalBorrowing = true;
 let chordIdCounter = 0;
 let currentPhrase = [];
+
+establishCurrentUser();
+
 
 function processRecommendations() {
     clearRecommendations()
