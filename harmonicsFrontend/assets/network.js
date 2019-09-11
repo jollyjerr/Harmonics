@@ -106,6 +106,7 @@ function postPhraseObjectFrom(phraseArr, name) {
         body: JSON.stringify({
             name: name,
             content: serialized.join(),
+            key: `${currentKey.name} ${currentKey.mode}`,
             user_id: currentUser
         })
     }

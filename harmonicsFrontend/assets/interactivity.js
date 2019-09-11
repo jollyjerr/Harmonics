@@ -290,11 +290,12 @@ function renderLoadPhraseListItems(phraseArr) {
 }
 
 function renderOldPhrase(phraseObj) {
+    console.log(phraseObj)
     let div = createLargeCard()
     let p = createSmallButton()
     p.textContent = phraseObj.name
     addManyClasses(p, ['fluid'])
-    p.addEventListener('click', () => changeCurrentPhrase(phraseObj.phrase))
+    p.addEventListener('click', () => changeCurrentPhrase(phraseObj.phrase, phraseObj.key))
     div.append(p)
     phraseObj.phrase.forEach(chord => {
         div.append(
@@ -305,8 +306,10 @@ function renderOldPhrase(phraseObj) {
     score.appendChild(div)
 }
 
-function changeCurrentPhrase(phrase) {
+function changeCurrentPhrase(phrase, key) {
     clearScore()
+    currentPhrase = []
+    changeCurrentKey(key.name, key.mode)
     phrase.forEach(addChord)
 }
 
@@ -320,8 +323,14 @@ function convertToStandardPhraseFormat(DBphrases) {
                 return c.name === name && c.type === type
             })
         })
+        let keyName = object.key.split(' ')[0]
+        let keyMode = object.key.split(' ')[1]
+        let parsedKey = keys.find(k => {
+            return k.name === keyName && k.mode === keyMode
+        })
         let namedPhrase = {
             name: object.name,
+            key: parsedKey,
             phrase: parsedPhrase
         }
         return namedPhrase
