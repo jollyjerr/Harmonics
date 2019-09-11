@@ -277,20 +277,37 @@ function renderPhrase(phraseArr) {
 }
 
 function renderLoadPhraseListItems(phraseArr) {
-    // let currentForDisplay = {
-    //     name: "Current Phrase",
-    //     content: currentPhrase
+    // if (currentPhrase) {
+    //     let currentForDisplay = {
+    //         name: "Current Phrase",
+    //         phrase: currentPhrase
+    //     }
+    //     console.log(phraseArr)
+    //     phraseArr.unshift(currentForDisplay)
+    //     console.log(phraseArr)
     // }
     phraseArr.forEach(renderOldPhrase)
 }
 
 function renderOldPhrase(phraseObj) {
     let div = createLargeCard()
-    let p = createSmallTitle()
+    let p = createSmallButton()
     p.textContent = phraseObj.name
-
+    addManyClasses(p, ['fluid'])
+    p.addEventListener('click', () => changeCurrentPhrase(phraseObj.phrase))
     div.append(p)
+    phraseObj.phrase.forEach(chord => {
+        div.append(
+            document.createElement('p').textContent = `${chord.name} ${chord.type} `
+        )
+    })
+    addManyClasses(div, ['ui', 'raised', 'segment'])
     score.appendChild(div)
+}
+
+function changeCurrentPhrase(phrase) {
+    clearScore()
+    phrase.forEach(addChord)
 }
 
 function convertToStandardPhraseFormat(DBphrases) {
