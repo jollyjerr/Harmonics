@@ -97,7 +97,7 @@ function postPhraseObjectFrom(phraseArr, name) {
         body: JSON.stringify({
             name: name,
             content: serialized.join(),
-            // user_id: currentUser.id
+            user_id: currentUser
         })
     }
     return obj;

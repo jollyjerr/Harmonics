@@ -35,6 +35,6 @@ class PhrasesController < ApplicationController
     private
 
     def phrase_params
-        params.require(:phrase).permit(:name, :content)
+        params.require(:phrase).permit(:name, :content, :user_id)
     end
 end
