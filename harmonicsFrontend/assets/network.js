@@ -1,7 +1,7 @@
-let BackendURL = 'http://localhost:3000/phrases/'
-let UserURL = 'http://localhost:3000/users/'
-let loginURL = 'http://localhost:3000/login'
-let reloginURL = 'http://localhost:3000/relogin'
+let BackendURL = 'https://harmoniccalculatorapi.herokuapp.com/phrases/'
+let UserURL = 'https://harmoniccalculatorapi.herokuapp.com/users/'
+let loginURL = 'https://harmoniccalculatorapi.herokuapp.com/login'
+let reloginURL = 'https://harmoniccalculatorapi.herokuapp.com/relogin'
 
 function play() {
     let interval = 1500

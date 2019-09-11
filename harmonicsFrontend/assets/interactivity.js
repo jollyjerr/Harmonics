@@ -18,6 +18,7 @@ function acceptLoggedInUser() {
     modalBorrowing = true
     chordIdCounter = 0
     currentPhrase = []
+    removeKeyOnSidebar()
     clearLoginForms()
     renderComposingScreen()
     clearChordMenu()
