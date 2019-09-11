@@ -60,7 +60,7 @@ function openSettings() {
 }
 
 function openSavePhraseMenu() {
-    if (currentPhrase.length >= 1) {
+    if (currentPhrase.length >= 1 && cardHolder.style.display === "") {
         clearScore()
         darken(score)
         renderPhraseForm()
@@ -68,8 +68,8 @@ function openSavePhraseMenu() {
 }
 
 function openLoadPhraseMenu() {
+    cardHolder.style.display = "none"
     clearScore()
-    clearChordMenu()
     fetchUserPhrases()
         .then(convertToStandardPhraseFormat)
         .then(renderLoadPhraseListItems)
@@ -278,15 +278,6 @@ function renderPhrase(phraseArr) {
 }
 
 function renderLoadPhraseListItems(phraseArr) {
-    // if (currentPhrase) {
-    //     let currentForDisplay = {
-    //         name: "Current Phrase",
-    //         phrase: currentPhrase
-    //     }
-    //     console.log(phraseArr)
-    //     phraseArr.unshift(currentForDisplay)
-    //     console.log(phraseArr)
-    // }
     phraseArr.forEach(renderOldPhrase)
 }
 
@@ -308,6 +299,7 @@ function renderOldPhrase(phraseObj) {
 }
 
 function changeCurrentPhrase(phrase, key) {
+    cardHolder.style.display = "";
     clearScore()
     currentPhrase = []
     changeCurrentKey(key.name, key.mode)
