@@ -195,9 +195,12 @@ function renderPhraseForm() {
 function phraseNameForm() {
     let div = createLargeForm()
     let p = createSmallTitle()
+    let inputHolder = document.createElement('div')
+    addManyClasses(inputHolder, ['ui', 'fluid', 'input'])
     let input = document.createElement('input')
+    inputHolder.appendChild(input)
     p.innerText = 'Name:'
-    div.append(p, input)
+    div.append(p, inputHolder)
     return div
 }
 
