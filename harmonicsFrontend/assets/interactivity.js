@@ -312,6 +312,7 @@ function renderLoadPhraseListItems(phraseArr) {
         clearScore()
         cardHolder.style.display = "none"
         phraseArr.forEach(renderOldPhrase)
+        appendLoadPhraseBackButton()
     } else {
         loadPhraseTab.style.color = "red"
         setTimeout(() => {
@@ -341,7 +342,20 @@ function renderOldPhrase(phraseObj) {
     score.appendChild(div)
 }
 
+function appendLoadPhraseBackButton() {
+    let button = createSmallButton()
+    addManyClasses(button, ['olive'])
+    button.textContent = "Back"
+    let phrase = currentPhrase
+    button.addEventListener('click', function() {
+        changeCurrentPhrase([], currentKey)
+        renderPhrase(phrase)
+    })
+    score.appendChild(button)
+}
+
 function changeCurrentPhrase(phrase, key) {
+    console.log(phrase)
     cardHolder.style.display = "";
     clearScore()
     currentPhrase = []
