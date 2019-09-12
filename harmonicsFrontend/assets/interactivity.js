@@ -6,6 +6,8 @@ const cardHolder = document.querySelector('#card_holder')
 const score = document.querySelector('#score')
 const loginForm = document.querySelector('#loginForm')
 const signupForm = document.querySelector('#signupForm')
+const savePhraseTab = document.querySelector('#savePhrase')
+const loadPhraseTab = document.querySelector('#loadPhrase')
 
 
 sidebar.addEventListener('click', () => sidebarEvents(event))
@@ -83,12 +85,15 @@ function openSavePhraseMenu() {
         clearScore()
         darken(score)
         renderPhraseForm()
+    } else {
+        savePhraseTab.style.color = "red"
+        setTimeout(() => {
+            savePhraseTab.style.color = "white"
+        }, 1000);
     }
 }
 
 function openLoadPhraseMenu() {
-    lighten(score)
-    clearScore()
     fetchUserPhrases()
         .then(convertToStandardPhraseFormat)
         .then(renderLoadPhraseListItems)
@@ -298,8 +303,15 @@ function renderPhrase(phraseArr) {
 
 function renderLoadPhraseListItems(phraseArr) {
     if (phraseArr.length >= 1) {
+        lighten(score)
+        clearScore()
         cardHolder.style.display = "none"
         phraseArr.forEach(renderOldPhrase)
+    } else {
+        loadPhraseTab.style.color = "red"
+        setTimeout(() => {
+            loadPhraseTab.style.color = "white"
+        }, 1000);
     }
 }
 
