@@ -172,6 +172,7 @@ function renderLoginForms() {
     playButton.style.display = "none"
     homePageLeft.style.display = ""
     homePageRight.style.display = ""
+    loginForm.style.display = "block"
     document.body.style.backgroundImage = "url(https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)"
     loginButton.addEventListener('click', renderLoginForm)
     signupButton.addEventListener('click', renderSignupForm)
