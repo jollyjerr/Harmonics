@@ -36,14 +36,16 @@ function changeCurrentKey(name, mode) {
 }
 
 function addChord(chord) {
-    chordIdCounter += 1
-    let newChord = {
-        chord: chord,
-        id: chordIdCounter
+    if (!score.classList.contains('inverted')) {
+        chordIdCounter += 1
+        let newChord = {
+            chord: chord,
+            id: chordIdCounter
+        }
+        renderChord(newChord)
+        currentPhrase.push(newChord)
+        processRecommendations()
     }
-    renderChord(newChord)
-    currentPhrase.push(newChord)
-    processRecommendations()
 }
 
 function removeChord(event, sadChord) {
