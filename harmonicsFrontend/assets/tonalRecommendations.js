@@ -10,7 +10,23 @@ function initializeChordSelection() {
     fromTonic()
 }
 
+function initializeMinorChordSelection() {
+    if (!cardHolder.firstChild) {
+        let options = allChordsFrom(currentKey)
+        if (modalBorrowing) {
+            options = options.concat(allChordsFrom(currentKey.parallel))
+        }
+        renderChordCards(options)
+    }
+    fromMinorTonic()
+}
+
 function fromTonic() {
+    renderBasics([currentKey.tonic, currentKey.supertonic, currentKey.mediant, currentKey.subdominant, currentKey.dominant, currentKey.submediant, currentKey.leadingtone])
+    renderParallel([currentKey.parallel.tonic, currentKey.parallel.subdominant, currentKey.parallel.mediant, currentKey.parallel.submediant])
+}
+
+function fromMinorTonic() {
     renderBasics([currentKey.tonic, currentKey.supertonic, currentKey.mediant, currentKey.subdominant, currentKey.dominant, currentKey.submediant, currentKey.leadingtone])
     renderParallel([currentKey.parallel.tonic, currentKey.parallel.subdominant, currentKey.parallel.mediant, currentKey.parallel.submediant])
 }
@@ -41,7 +57,7 @@ function fromLeadingtone() {
     renderBasics([currentKey.mediant, currentKey.tonic])
 }
 
-function fromLeadingtoneMinor() {
+function fromMinorLeadingtone() {
     renderBasics([currentKey.mediant])
     renderParallel([currentKey.parallel.leadingtone])
 }

@@ -4,7 +4,7 @@ let loginURL = 'https://harmoniccalculatorapi.herokuapp.com/login'
 let reloginURL = 'https://harmoniccalculatorapi.herokuapp.com/relogin'
 
 function play() {
-    let interval = 1500
+    let interval = 2000
     currentPhrase.forEach(function(chord, index) {
         setTimeout(function() {
             playChord(chord["chord"])

@@ -16,6 +16,7 @@ function processRecommendations() {
         initializeModulation()
         recommendations['modulation'][currentTonalState()][findChordsFunction(prevChord())]()
     } else {
+        console.log(recommendations['tonal'][currentTonalState()][findChordsFunction(prevChord())])
         recommendations['tonal'][currentTonalState()][findChordsFunction(prevChord())]()
     }
 }
@@ -161,14 +162,14 @@ const recommendations = {
             leadingtone: fromLeadingtone
         },
         minor: {
-            undefined: initializeChordSelection,
-            tonic: fromTonic,
+            undefined: initializeMinorChordSelection,
+            tonic: fromMinorTonic,
             supertonic: fromSupertonic,
             mediant: fromMediant,
             subdominant: fromSubdominant,
             dominant: fromDominant,
             submediant: fromSubmediant,
-            leadingtone: fromLeadingtoneMinor
+            leadingtone: fromMinorLeadingtone
         },
     }
 }
