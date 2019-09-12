@@ -373,16 +373,16 @@ function appendLoadPhraseBackButton() {
     let button = createSmallButton()
     addManyClasses(button, ['olive'])
     button.textContent = "Back"
-    let phrase = currentPhrase
+    let phrase = currentPhrase.map(chord => {
+        return chord.chord
+    })
     button.addEventListener('click', function() {
-        changeCurrentPhrase([], currentKey)
-        renderPhrase(phrase)
+        changeCurrentPhrase(phrase, currentKey)
     })
     score.appendChild(button)
 }
 
 function changeCurrentPhrase(phrase, key) {
-    console.log(phrase)
     cardHolder.style.display = "";
     clearScore()
     currentPhrase = []
