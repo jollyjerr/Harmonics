@@ -87,6 +87,7 @@ function openSavePhraseMenu() {
 }
 
 function openLoadPhraseMenu() {
+    lighten(score)
     clearScore()
     fetchUserPhrases()
         .then(convertToStandardPhraseFormat)
