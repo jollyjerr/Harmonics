@@ -11,6 +11,22 @@ nav img {
     margin: 0.5em 1em;
 }
 
+form {
+    transform: scale(0.8)
+}
+
+a {
+    transform: scale(0.8)
+}
+
+.greenemph {
+    color: green;
+}
+
+.yellowemph {
+    color: yellow;
+}
+
 .logo {
     margin-top: 1rem;
     color: rgb(254, 212, 156);
@@ -28,8 +44,13 @@ nav img {
     font-family: 'Muli', serif;
 }
 
-#loginForm {
-    display: none;
+#orTag {
+    margin: 0 30%;
+    transform: scale(0.8)
+}
+
+#homePageRight {
+    height: 100%;
 }
 
 #signupForm {

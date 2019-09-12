@@ -23,15 +23,49 @@
         </div>
     </nav>
     <main class="ui two column grid">
-        <form class="column" id="loginForm">
-            <div class="ui basic segment">
-                <label class="ui dividing header" for="name">Name:</label>
-                <div class="ui fluid input"><input type="text" name="name"></div>
-                <label class="ui dividing header" for="password">Password:</label>
-                <div class="ui fluid input"><input type="password" name="password"></div>
-                <input class="ui positive mini fluid button" type="submit" value="Log In">
+        <div class="column" id="homePageLeft">
+            <form class="" id="loginForm">
+                <div class="ui basic segment">
+                    <label class="ui dividing header" for="name">Name:</label>
+                    <div class="ui fluid input"><input type="text" name="name"></div>
+                    <label class="ui dividing header" for="password">Password:</label>
+                    <div class="ui fluid input"><input type="password" name="password"></div>
+                    <input class="ui positive mini fluid button" type="submit" value="Log In">
+                </div>
+            </form>
+            <form class="" id="signupForm">
+                <div class="ui basic segment">
+                    <label class="ui dividing header" for="name">Name:</label>
+                    <div class="ui fluid input"><input type="text" name="name"></div>
+                    <label class="ui dividing header" for="password">Password:</label>
+                    <div class="ui fluid input"><input type="password" name="password"></div>
+                    <input class="ui fluid mini yellow button" type="submit" value="Sign up">
+                </div>
+            </form>
+        </div>
+        <div class="column" id="homePageRight">
+            <div class="ui inverted segment">
+                <div id="orTag">
+                    <div class="ui buttons">
+                        <button class="ui inverted button" id="loginButton">Log In</button>
+                        <div class="or"></div>
+                        <button class="ui inverted button" id="signupButton">Sign Up</button>
+                    </div>
+                </div>
             </div>
-        </form>
+            <div class="description">
+                <p>
+                    Harmonics is a tonal progression calculator that will recommend chords as you write music.
+                </p>
+                <p>
+                    <span class="greenemph">Green</span> indicates standard voice leading.
+                </p>
+                <p>
+                    <span class="yellowemph">Yellow</span> indicates chords that will function by other means.
+                </p>
+            </div>
+        </div>
+        </div>
         <section id="sidebar_container" class="column">
             <div class="ui inverted vertical text menu">
                 <a class="item">Set Key</a>
@@ -41,15 +75,6 @@
                 <a class="item" id="signOut">Sign Out</a>
             </div>
         </section>
-        <form class="column" id="signupForm">
-            <div class="ui basic segment">
-                <label class="ui dividing header" for="name">Name:</label>
-                <div class="ui fluid input"><input type="text" name="name"></div>
-                <label class="ui dividing header" for="password">Password:</label>
-                <div class="ui fluid input"><input type="password" name="password"></div>
-                <input class="ui fluid mini button" type="submit" value="sign up">
-            </div>
-        </form>
         <section id="composing_table" class="column">
             <div id="card_holder" class="ui basic segment">
             </div>

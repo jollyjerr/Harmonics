@@ -8,6 +8,10 @@ const loginForm = document.querySelector('#loginForm')
 const signupForm = document.querySelector('#signupForm')
 const savePhraseTab = document.querySelector('#savePhrase')
 const loadPhraseTab = document.querySelector('#loadPhrase')
+const homePageLeft = document.querySelector('#homePageLeft')
+const homePageRight = document.querySelector('#homePageRight')
+const loginButton = document.querySelector('#loginButton')
+const signupButton = document.querySelector('#signupButton')
 
 
 sidebar.addEventListener('click', () => sidebarEvents(event))
@@ -26,6 +30,8 @@ document.addEventListener('keyup', () => {
 
 
 function acceptLoggedInUser() {
+    homePageLeft.style.display = "none"
+    homePageRight.style.display = "none"
     document.body.style.background = "rgb(211, 211, 211)"
     playButton.style.display = ""
     currentPhrase = []
@@ -109,8 +115,6 @@ function openLoadPhraseMenu() {
 function initiateLogin() {
     clearComposingScreen()
     renderLoginForms()
-    loginForm.addEventListener('submit', login)
-    signupForm.addEventListener('submit', signup)
 }
 
 function login() {
@@ -166,9 +170,23 @@ function renderComposingScreen() {
 
 function renderLoginForms() {
     playButton.style.display = "none"
+    homePageLeft.style.display = ""
+    homePageRight.style.display = ""
     document.body.style.backgroundImage = "url(https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)"
+    loginButton.addEventListener('click', renderLoginForm)
+    signupButton.addEventListener('click', renderSignupForm)
+}
+
+function renderLoginForm() {
+    clearLoginForms()
     loginForm.style.display = "block"
+    loginForm.addEventListener('submit', login)
+}
+
+function renderSignupForm() {
+    clearLoginForms()
     signupForm.style.display = "block"
+    signupForm.addEventListener('submit', signup)
 }
 
 function clearLoginForms() {
