@@ -15,7 +15,9 @@ playButton.addEventListener('click', play)
 document.addEventListener('keyup', () => {
     if (event.key === ' ') {
         event.preventDefault()
-        play()
+        if (!score.classList.contains('inverted')) {
+            play()
+        }
     }
     if (event.key === 'enter') {
         event.preventDefault()
