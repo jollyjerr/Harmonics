@@ -10,6 +10,16 @@ const signupForm = document.querySelector('#signupForm')
 
 sidebar.addEventListener('click', () => sidebarEvents(event))
 playButton.addEventListener('click', play)
+document.addEventListener('keyup', () => {
+    if (event.key === ' ') {
+        event.preventDefault()
+        play()
+    }
+    if (event.key === 'enter') {
+        event.preventDefault()
+    }
+})
+
 
 function acceptLoggedInUser() {
     currentPhrase = []

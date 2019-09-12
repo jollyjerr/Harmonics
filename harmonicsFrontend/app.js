@@ -16,7 +16,6 @@ function processRecommendations() {
         initializeModulation()
         recommendations['modulation'][currentTonalState()][findChordsFunction(prevChord())]()
     } else {
-        console.log(recommendations['tonal'][currentTonalState()][findChordsFunction(prevChord())])
         recommendations['tonal'][currentTonalState()][findChordsFunction(prevChord())]()
     }
 }
