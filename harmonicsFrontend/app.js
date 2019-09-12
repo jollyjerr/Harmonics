@@ -125,7 +125,7 @@ function diminishedFilter(chord) {
 }
 
 function changeHarmonyEra(mode) {
-    alert(mode)
+    alert("Coming soon!")
 }
 
 const recommendations = {

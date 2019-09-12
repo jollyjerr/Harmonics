@@ -64,6 +64,9 @@ function sidebarEvents(event) {
 }
 
 function openPickKeyMenu() {
+    if (cardHolder.style.display === "none") {
+        cardHolder.style.display = "";
+    }
     if (!score.classList.contains('inverted')) {
         clearChordMenu()
         clearScore()
