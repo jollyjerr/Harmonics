@@ -26,6 +26,8 @@ document.addEventListener('keyup', () => {
 
 
 function acceptLoggedInUser() {
+    document.body.style.background = "rgb(211, 211, 211)"
+    playButton.style.display = ""
     currentPhrase = []
     previousKey = undefined
     currentKey = undefined
@@ -163,6 +165,8 @@ function renderComposingScreen() {
 }
 
 function renderLoginForms() {
+    playButton.style.display = "none"
+    document.body.style.backgroundImage = "url(https://images.unsplash.com/photo-1507838153414-b4b713384a76?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)"
     loginForm.style.display = "block"
     signupForm.style.display = "block"
 }
