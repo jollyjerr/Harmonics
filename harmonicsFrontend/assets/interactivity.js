@@ -160,7 +160,23 @@ function clearComposingScreen() {
 }
 
 function renderFailedLoginMessage() {
-    alert("Username or Password was incorrect")
+    let div = createLargeCard()
+    div.textContent = "Username or Password was incorrect."
+    div.style.color = 'red'
+    homePageLeft.appendChild(div)
+    setTimeout(() => {
+        homePageLeft.removeChild(div)
+    }, 3000);
+}
+
+function renderFailedNewUserMessage() {
+    let div = createLargeCard()
+    div.textContent = "Username already exists."
+    div.style.color = 'red'
+    homePageLeft.appendChild(div)
+    setTimeout(() => {
+        homePageLeft.removeChild(div)
+    }, 3000);
 }
 
 function renderComposingScreen() {

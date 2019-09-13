@@ -65,6 +65,7 @@ function newUser(name, password) {
             localStorage.setItem("jwt", response.token)
             establishCurrentUser()
         })
+        .catch(renderFailedNewUserMessage)
 }
 
 function loginUser(name, password) {
@@ -87,6 +88,7 @@ function loginUser(name, password) {
                 renderFailedLoginMessage()
             }
         })
+        .catch(renderFailedLoginMessage)
 }
 
 function signOut() {
