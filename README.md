@@ -51,9 +51,6 @@ Ruby on Rails
 
 [Semantic UI](https://semantic-ui.com/)
 
-## Demo Video
-[Here!](https://www.google.com)
-
 ## Contributing
 Feel free to open pull requests or report any bugs!
 
