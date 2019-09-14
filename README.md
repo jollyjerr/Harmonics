@@ -1,6 +1,7 @@
 # Harmonics
 
 A harmonic progression and modulation calculator. 
+
 *Conditionally rendered recommendations adapt to phrase structure, modulations, and modal borrowing.*
 
 ![demo](https://github.com/jollyjerr/Harmonics/blob/master/github/save.gif)
