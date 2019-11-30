@@ -1,0 +1,17 @@
+@import './variables.scss';
+main {
+    background-color: $background;
+    height: calc(100vh - 60px);
+    width: calc(100vw - 60px);
+    float: right;
+}
+
+.main-tool {
+    position: absolute;
+    width: $sMenu;
+    height: calc(100% - 60px);
+    left: 0;
+    top: $sMenu;
+    background-color: $dull;
+    color: $textLight;
+}
