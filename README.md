@@ -2,7 +2,7 @@
 
 A harmonic progression and modulation calculator. 
 
-![demo](https://github.com/jollyjerr/Harmonics/blob/master/github/save.gif)
+![demo](https://github.com/jollyjerr/Harmonics/blob/harmonics2.0/github/save.gif)
 
 ## Getting Started
 
@@ -28,7 +28,7 @@ If you wish to dive deeper, feel free to fork and clone this repo.
  
 ### Encrypted Authentication with "JWT" tokens
 
-![login](https://github.com/jollyjerr/Harmonics/blob/master/github/login.gif)
+![login](https://github.com/jollyjerr/Harmonics/blob/harmonics2.0/github/login.gif)
 
 User security is a necessary element of any modern web application. Harmonics uses encrypted "JWT" token authentication to ensure privacy and security.
 
@@ -38,7 +38,7 @@ At any time, a user can hear a high-quality playback of the phrase they are curr
 
 ### User accounts can save and reload phrases, and edit recommendation preferences 
 
-![load phrase](https://github.com/jollyjerr/Harmonics/blob/master/github/load.gif)
+![load phrase](https://github.com/jollyjerr/Harmonics/blob/harmonics2.0/github/load.gif)
 
 ## Technology Used
 
