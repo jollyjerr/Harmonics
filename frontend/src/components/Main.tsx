@@ -15,6 +15,7 @@ export default class Main extends React.Component {
         <Workspace
           phrase={this.state.phrase}
           addChord={this.addChord} 
+          removeChord={this.removeChord}
           currentKey={this.state.key}
         />
       </main>
@@ -40,6 +41,14 @@ export default class Main extends React.Component {
       phrase: [...this.state.phrase, newChord]
     });
   };
+
+  removeChord = (chord: ChordInstance): void => {
+    this.setState({
+      phrase: this.state.phrase.filter(c => {
+        return c.id !== chord.id
+      })
+    });
+  }
 
   changeKey = (key: Key): void => {
     this.setState({

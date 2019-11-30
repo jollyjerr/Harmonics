@@ -71,6 +71,7 @@ export type State = {
 export type WorkspaceProps = {
   phrase: Chord[],
   addChord: Function,
+  removeChord: Function,
   currentKey: Key
 }
 

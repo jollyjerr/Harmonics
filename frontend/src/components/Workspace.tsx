@@ -5,11 +5,11 @@ import './styles/workspace.scss';
 
 import ChordCard from './children/chordCard';
 
-const Workspace = ({phrase, addChord, currentKey}: WorkspaceProps) => {
+const Workspace = ({phrase, addChord, removeChord, currentKey}: WorkspaceProps) => {
 
     const phraseCards = () => {
       return phrase.map((chord, i) => {
-        return <ChordCard key={i} chord={chord} action={addChord} />;
+        return <ChordCard key={i} chord={chord} action={removeChord} />;
       });
     };
 
