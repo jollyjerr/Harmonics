@@ -3,7 +3,7 @@ import { WorkspaceProps } from '../assets/types'
 
 import './styles/workspace.scss';
 
-import ChordCard from './children/chordCard';
+import ChordCard from './children/ChordCard';
 import { keys } from '../assets/data';
 import KeyCard from './children/KeyCard';
 

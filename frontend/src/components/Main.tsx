@@ -3,7 +3,7 @@ import Toolbar from './Toolbar';
 
 import './styles/main.scss'
 
-import {keys, chords} from '../assets/data';
+import {keys} from '../assets/data';
 import {State, Chord, Key, ChordInstance} from '../assets/types';
 import Workspace from './Workspace';
 

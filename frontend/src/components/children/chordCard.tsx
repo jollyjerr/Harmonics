@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Chord, ChordCardProps} from '../../assets/types';
+import {ChordCardProps} from '../../assets/types';
 
 const ChordCard = ({chord, action}: ChordCardProps) => {
   return (
