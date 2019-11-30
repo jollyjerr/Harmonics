@@ -4,7 +4,8 @@
     width: 100%;
     background-color: $white;
     .chord-card {
-        width: 4rem;
+        width: max-content;
+        padding: $pNormal;
         min-width: 10px;
         display: flex;
         h1 {
@@ -16,14 +17,17 @@
     }
     .chord-card:hover {
         cursor: pointer;
-        background-color: $active;
     }
     .options {
+        overflow: scroll;
         display: flex;
         justify-content: space-evenly;
         background-color: $normal;
         .chord-card {
             color: $textLight
+        }
+        .chord-card:hover {
+            background-color: $active;
         }
     }
     .display {
@@ -33,6 +37,9 @@
         flex-wrap: wrap;
         .chord-card {
             color: $textDark;
+        }
+        .chord-card:hover {
+            background-color: $negative;
         }
     }
 }

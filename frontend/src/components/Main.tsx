@@ -11,12 +11,17 @@ export default class Main extends React.Component {
   render() {
     return (
       <main>
-        <Toolbar />
+        <Toolbar
+          toggleKeyMenu={this.toggleKeyMenu}
+          musicalKey={this.state.key}
+        />
         <Workspace
           phrase={this.state.phrase}
           addChord={this.addChord} 
           removeChord={this.removeChord}
+          changeKey={this.changeKey}
           currentKey={this.state.key}
+          isChangingKey={this.state.isChangingKey}
         />
       </main>
     );
@@ -26,7 +31,8 @@ export default class Main extends React.Component {
   state: State = {
     phrase: [],
     key: keys[0],
-    prevKey: undefined
+    prevKey: undefined,
+    isChangingKey: false
   };
 
   addChord = (chord: Chord): void => {
@@ -47,6 +53,12 @@ export default class Main extends React.Component {
       phrase: this.state.phrase.filter(c => {
         return c.id !== chord.id
       })
+    });
+  }
+
+  toggleKeyMenu = (): void => {
+    this.setState({
+      isChangingKey: !this.state.isChangingKey
     });
   }
 

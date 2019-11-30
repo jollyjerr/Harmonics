@@ -4,8 +4,17 @@ import { WorkspaceProps } from '../assets/types'
 import './styles/workspace.scss';
 
 import ChordCard from './children/chordCard';
+import { keys } from '../assets/data';
+import KeyCard from './children/KeyCard';
 
-const Workspace = ({phrase, addChord, removeChord, currentKey}: WorkspaceProps) => {
+const Workspace = ({
+    phrase, 
+    addChord, 
+    removeChord, 
+    changeKey,
+    currentKey, 
+    isChangingKey
+    }: WorkspaceProps) => {
 
     const phraseCards = () => {
       return phrase.map((chord, i) => {
@@ -28,10 +37,20 @@ const Workspace = ({phrase, addChord, removeChord, currentKey}: WorkspaceProps) 
         })
     }
 
+    const keyOptions = () => {
+        return keys.map((key, i) => {
+            return <KeyCard key={i} musicalKey={key} action={changeKey} />
+        })
+    }
+
     return (
         <div className="workspace">
             <section className="options">
-                {chordOptions()}
+                { 
+                    isChangingKey ? 
+                    keyOptions()  :
+                    chordOptions()
+                }
             </section>
             <section className="display">
                 {phraseCards()}

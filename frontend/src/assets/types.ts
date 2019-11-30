@@ -65,18 +65,32 @@ export class Key {
 export type State = {
   phrase: ChordInstance[],
   key: Key,
-  prevKey: any
+  prevKey: any,
+  isChangingKey: boolean
 }
 
 export type WorkspaceProps = {
   phrase: Chord[],
   addChord: Function,
   removeChord: Function,
-  currentKey: Key
+  changeKey: Function,
+  currentKey: Key,
+  isChangingKey: boolean
 }
 
 export type ChordCardProps = {
   key: number,
   chord: Chord,
   action: Function
+}
+
+export type KeyCardProps = {
+  key: number,
+  musicalKey: Key,
+  action: Function
+}
+
+export type ToolbarProps = {
+  toggleKeyMenu: Function,
+  musicalKey: Key
 }
