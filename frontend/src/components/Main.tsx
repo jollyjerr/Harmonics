@@ -7,6 +7,7 @@ import {State, Chord, Key, ChordInstance} from '../assets/types';
 
 import Workspace from './Workspace';
 import Toolbar from './Toolbar';
+import ReactHowler from 'react-howler';
 
 export default class Main extends React.Component {
   render() {
@@ -14,6 +15,7 @@ export default class Main extends React.Component {
       <main>
         <Toolbar
           toggleKeyMenu={this.toggleKeyMenu}
+          toggleAudioPlayback={this.toggleAudioPlayback}
           musicalKey={this.state.key}
         />
         <Workspace
@@ -23,6 +25,10 @@ export default class Main extends React.Component {
           changeKey={this.changeKey}
           currentKey={this.state.key}
           isChangingKey={this.state.isChangingKey}
+        />
+        <ReactHowler 
+          src={this.audioSource()}
+          playing={this.state.isPlayingAudio}
         />
       </main>
     );
@@ -68,6 +74,12 @@ export default class Main extends React.Component {
     this.setState({
       isPlayingAudio: !this.state.isPlayingAudio
     })
+  }
+
+  audioSource = (): string[] => {
+    return this.state.phrase.map(chord => {
+      return chord.sound
+    });
   }
 
   changeKey = (key: Key): void => {

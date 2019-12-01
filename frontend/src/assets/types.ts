@@ -93,5 +93,6 @@ export type KeyCardProps = {
 
 export type ToolbarProps = {
   toggleKeyMenu: Function,
+  toggleAudioPlayback: Function,
   musicalKey: Key
 }
