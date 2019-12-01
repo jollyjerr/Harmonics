@@ -66,7 +66,8 @@ export type State = {
   phrase: ChordInstance[],
   key: Key,
   prevKey: any,
-  isChangingKey: boolean
+  isChangingKey: boolean,
+  isPlayingAudio: boolean
 }
 
 export type WorkspaceProps = {

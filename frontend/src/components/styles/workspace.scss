@@ -30,6 +30,9 @@
             background-color: $active;
         }
     }
+    .options::-webkit-scrollbar {
+        display: none;
+    }
     .display {
         padding: $pNormal;
         display: flex;

@@ -1,11 +1,12 @@
 import React from 'react';
-import Toolbar from './Toolbar';
 
 import './styles/main.scss'
 
 import {keys} from '../assets/data';
 import {State, Chord, Key, ChordInstance} from '../assets/types';
+
 import Workspace from './Workspace';
+import Toolbar from './Toolbar';
 
 export default class Main extends React.Component {
   render() {
@@ -32,7 +33,8 @@ export default class Main extends React.Component {
     phrase: [],
     key: keys[0],
     prevKey: undefined,
-    isChangingKey: false
+    isChangingKey: false,
+    isPlayingAudio: false
   };
 
   addChord = (chord: Chord): void => {
@@ -60,6 +62,12 @@ export default class Main extends React.Component {
     this.setState({
       isChangingKey: !this.state.isChangingKey
     });
+  }
+
+  toggleAudioPlayback = (): void => {
+    this.setState({
+      isPlayingAudio: !this.state.isPlayingAudio
+    })
   }
 
   changeKey = (key: Key): void => {
