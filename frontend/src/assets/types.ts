@@ -67,7 +67,8 @@ export type State = {
   key: Key,
   prevKey: any,
   isChangingKey: boolean,
-  isPlayingAudio: boolean
+  isPlayingAudio: boolean,
+  chordCounter: number
 }
 
 export type WorkspaceProps = {

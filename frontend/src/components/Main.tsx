@@ -1,4 +1,5 @@
 import React from 'react';
+import {Howl, Howler} from 'howler'
 
 import './styles/main.scss'
 
@@ -10,6 +11,9 @@ import Toolbar from './Toolbar';
 
 export default class Main extends React.Component {
   render() {
+
+    this.play(this.state.isPlayingAudio);
+
     return (
       <main>
         <Toolbar
@@ -29,25 +33,25 @@ export default class Main extends React.Component {
     );
   }
 
-  chordCounter: number = 0;
   state: State = {
     phrase: [],
     key: keys[0],
     prevKey: undefined,
     isChangingKey: false,
-    isPlayingAudio: false
+    isPlayingAudio: false,
+    chordCounter: 0
   };
 
   addChord = (chord: Chord): void => {
-    this.chordCounter++
     let newChord = new ChordInstance(
       chord.name,
       chord.type,
       chord.sound,
-      this.chordCounter
+      this.state.chordCounter
     );
     this.setState({
-      phrase: [...this.state.phrase, newChord]
+      phrase: [...this.state.phrase, newChord],
+      chordCounter: this.state.chordCounter + 1
     });
   };
 
@@ -83,5 +87,18 @@ export default class Main extends React.Component {
       prevKey: this.state.key
     });
   };
+
+  play = (isPlaying: boolean): void => {
+    if(!this.state.phrase[0]){
+      return;
+    }
+
+    if (isPlaying) {
+      var phrase = new Howl({
+        src: this.state.phrase.map(c => c.sound)
+      });
+      phrase.play();
+    }
+  }
 
 }
