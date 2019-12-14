@@ -24,7 +24,8 @@
         justify-content: space-evenly;
         background-color: $normal;
         .chord-card {
-            color: $textLight
+            color: $textLight;
+            min-width: $sMenu;
         }
         .chord-card:hover {
             background-color: $active;
