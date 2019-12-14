@@ -97,6 +97,7 @@ export default class Main extends React.Component {
       var phrase = new Howl({
         src: this.state.phrase.map(c => c.sound)
       });
+      console.log(phrase);
       phrase.play();
     }
   }
