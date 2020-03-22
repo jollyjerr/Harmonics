@@ -1,15 +1,17 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
+import Container from "@material-ui/core/Container";
 
 interface TColors {
     [key: string]: string;
 }
 
 export const colors: TColors = {
-    background: "#50555E",
-    highlight: "#3B9989",
-    dull: "#EFE097",
-    pop: "#BF4F16",
-    calm: "#384C37",
+    background: "#353941",
+    dull: "#26282b",
+    highlight: "#fffdf9",
+    pop: "#90b8f8",
+    calm: "#5f85db",
 };
 
 const baseFontSize = 16;
@@ -21,12 +23,16 @@ export const font = {
         basePercent: `${baseFontSizePercent}%`,
     },
     families: {
-        spartan: "'Nunito', sans-serif",
+        nunito: "'Nunito', sans-serif",
     },
     helpers: {
         convertPixelsToRems: (value: number): string => `${value / baseFontSize}rem`,
     },
 };
+
+export const Shell = styled("div")`
+    padding: 0 ${font.helpers.convertPixelsToRems(10)};
+` as typeof Container;
 
 export default createGlobalStyle`
   * {
@@ -35,7 +41,7 @@ export default createGlobalStyle`
   body {
     background: ${colors.background};
     color: ${colors.highlight};
-    font-family: ${font.families.spartan};
+    font-family: ${font.families.nunito};
     font-size: ${font.sizes.basePercent};
   }
 `;
