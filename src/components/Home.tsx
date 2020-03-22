@@ -1,11 +1,15 @@
+import ComposingTable from "./ComposingTable";
+import Navbar from "./Navbar";
 import React from "react";
 import { Shell } from "../assets/styles";
-import Typography from "@material-ui/core/Typography";
+import homeStyles from "../theme/homeStyles";
 
 const Home = () => {
+    const classes = homeStyles();
     return (
-        <Shell>
-            <Typography>Home</Typography>
+        <Shell className={classes.shell}>
+            <Navbar />
+            <ComposingTable />
         </Shell>
     );
 };
