@@ -60,4 +60,15 @@ export class Key {
     setParallel(key: Key) {
         this.parallel = key;
     }
+    chords(): Chord[] {
+        return [
+            this.tonic,
+            this.supertonic,
+            this.mediant,
+            this.subdominant,
+            this.dominant,
+            this.submediant,
+            this.leadingtone,
+        ];
+    }
 }
