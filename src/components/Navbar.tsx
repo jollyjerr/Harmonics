@@ -1,12 +1,17 @@
-import { AppBar, Drawer, IconButton, Toolbar } from "@material-ui/core";
+import { AppBar, Button, Drawer, IconButton, Toolbar } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import MenuIcon from "@material-ui/icons/Menu";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
 import homeStyles from "../theme/homeStyles";
+import { keys } from "../assets/data";
 
-const Navbar = () => {
+interface Tprops {
+    selectKey: Function;
+}
+
+const Navbar = ({ selectKey }: Tprops) => {
     const classes = homeStyles();
     const [open, setOpen] = React.useState(false);
     return (
@@ -44,6 +49,13 @@ const Navbar = () => {
                     <IconButton onClick={() => setOpen(!open)}>
                         <ChevronLeftIcon />
                     </IconButton>
+                </div>
+                <div>
+                    {keys.map(key => (
+                        <Button key={(key.name, key.mode)} onClick={() => selectKey(key)}>
+                            {key.name} {key.mode}
+                        </Button>
+                    ))}
                 </div>
             </Drawer>
         </>
