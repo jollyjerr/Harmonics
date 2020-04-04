@@ -29,6 +29,19 @@ const homeStyles = makeStyles((theme: Theme) =>
         menuButton: {
             marginRight: theme.spacing(2),
         },
+        keyContainer: {
+            flexGrow: 1,
+            display: "flex",
+            justifyContent: "space evenly",
+            marginLeft: "15px",
+        },
+        keyButton: {
+            width: "3rem",
+            height: "3rem",
+            padding: "0.5rem",
+            margin: "0.5rem",
+            fontSize: "large",
+        },
         hide: {
             display: "none",
         },

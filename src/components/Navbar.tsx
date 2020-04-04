@@ -1,5 +1,17 @@
-import { AppBar, Button, Drawer, IconButton, Toolbar } from "@material-ui/core";
+import {
+    AppBar,
+    Button,
+    ButtonBase,
+    Drawer,
+    ExpansionPanelSummary,
+    Grid,
+    IconButton,
+    Toolbar,
+} from "@material-ui/core";
+
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import MenuIcon from "@material-ui/icons/Menu";
 import React from "react";
 import Typography from "@material-ui/core/Typography";
@@ -50,13 +62,18 @@ const Navbar = ({ selectKey }: Tprops) => {
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>
-                <div>
-                    {keys.map(key => (
-                        <Button key={(key.name, key.mode)} onClick={() => selectKey(key)}>
-                            {key.name} {key.mode}
-                        </Button>
-                    ))}
-                </div>
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="change-key">
+                        <Typography>Change Key</Typography>
+                    </ExpansionPanelSummary>
+                    <Grid container className={classes.keyContainer}>
+                        {keys.map((key, i) => (
+                            <ButtonBase key={i} onClick={() => selectKey(key)} className={classes.keyButton}>
+                                {key.name} {key.mode}
+                            </ButtonBase>
+                        ))}
+                    </Grid>
+                </ExpansionPanel>
             </Drawer>
         </>
     );
