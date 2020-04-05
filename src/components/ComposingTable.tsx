@@ -15,11 +15,6 @@ const useStyles = makeStyles(() =>
             height: "calc(100vh - 70px)",
             flexGrow: 1,
         },
-        card: {
-            minWidth: 100,
-            padding: "1rem",
-            margin: "1rem",
-        },
     }),
 );
 
@@ -40,7 +35,7 @@ const ComposingTable = ({ selectedKey }: Tprops) => {
             />
             <Grid container spacing={3}>
                 {currentPhrase?.map(chord => (
-                    <PhraseMember chord={chord} />
+                    <PhraseMember chord={chord} currentPhrase={currentPhrase} setCurrentPhrase={setCurrentPhrase} />
                 ))}
             </Grid>
         </Box>
