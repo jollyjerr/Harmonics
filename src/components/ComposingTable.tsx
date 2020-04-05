@@ -1,8 +1,10 @@
 import { Box, Button, ButtonBase, Grid, Paper, Typography, createStyles, makeStyles } from "@material-ui/core";
+import { Chord, ChordInstance, Key } from "../assets/objects";
 import { chords, keys } from "../assets/data";
 
 import Card from "@material-ui/core/Card";
-import { Key } from "../assets/objects";
+import ChordSelection from "./ChordSelection";
+import PhraseMember from "./PhraseMember";
 import React from "react";
 
 const useStyles = makeStyles(() =>
@@ -13,11 +15,6 @@ const useStyles = makeStyles(() =>
             height: "calc(100vh - 70px)",
             flexGrow: 1,
         },
-        card: {
-            minWidth: 100,
-            padding: "1rem",
-            margin: "1rem",
-        },
     }),
 );
 
@@ -26,16 +23,19 @@ interface Tprops {
 }
 
 const ComposingTable = ({ selectedKey }: Tprops) => {
+    const [currentPhrase, setCurrentPhrase] = React.useState<ChordInstance[]>([]);
     const classes = useStyles();
 
     return (
         <Box className={classes.root}>
-            <Grid container justify="center" spacing={1}>
-                {selectedKey.chords().map((chord, i) => (
-                    <ButtonBase key={i} className={classes.card}>
-                        <Typography variant="h2">{chord.name}</Typography>
-                        <Typography>{chord.type}</Typography>
-                    </ButtonBase>
+            <ChordSelection
+                selectedKey={selectedKey}
+                currentPhrase={currentPhrase}
+                setCurrentPhrase={setCurrentPhrase}
+            />
+            <Grid container spacing={3}>
+                {currentPhrase?.map(chord => (
+                    <PhraseMember chord={chord} currentPhrase={currentPhrase} setCurrentPhrase={setCurrentPhrase} />
                 ))}
             </Grid>
         </Box>
