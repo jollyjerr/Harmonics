@@ -11,14 +11,14 @@ const homeStyles = makeStyles((theme: Theme) =>
             display: "flex",
         },
         navbar: {
-            backgroundColor: theme.palette.primary.dark,
+            // backgroundColor: colors.dull,
             transition: theme.transitions.create(["margin", "width"], {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,
             }),
         },
         navbarShift: {
-            backgroundColor: theme.palette.primary.dark,
+            // backgroundColor: colors.dull,
             width: `calc(100% - ${sidebarWidth}px)`,
             marginLeft: sidebarWidth,
             transition: theme.transitions.create(["margin", "width"], {
@@ -28,11 +28,6 @@ const homeStyles = makeStyles((theme: Theme) =>
         },
         menuButton: {
             marginRight: theme.spacing(2),
-            color: theme.palette.primary.main
-        },
-        expansionPanel: {
-            backgroundColor: theme.palette.primary.dark,
-            color: theme.palette.primary.main,
         },
         keyContainer: {
             flexGrow: 1,
@@ -55,11 +50,11 @@ const homeStyles = makeStyles((theme: Theme) =>
             flexShrink: 0,
         },
         sidebarPaper: {
-            backgroundColor: theme.palette.primary.dark,
+            // backgroundColor: colors.dull,
             width: sidebarWidth,
         },
         sidebarHeader: {
-            backgroundColor: theme.palette.primary.dark,
+            // backgroundColor: colors.dull,
             display: "flex",
             alignItems: "center",
             padding: theme.spacing(0, 1),
@@ -68,7 +63,7 @@ const homeStyles = makeStyles((theme: Theme) =>
         },
         composingTable: {
             marginTop: sidebarWidth,
-            backgroundColor: theme.palette.primary.light,
+            // backgroundColor: colors.pop,
         },
     }),
 );

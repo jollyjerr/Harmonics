@@ -6,9 +6,12 @@ import NotFound from "./components/NotFound";
 import React from "react";
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "./theme";
+import createMuiTheme from './theme/mainTheme'
+
+const mainTheme = createMuiTheme
 
 const App = () => (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={mainTheme}>
         <GlobalStyle />
         <Router>
             <Switch>
