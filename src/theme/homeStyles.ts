@@ -28,7 +28,7 @@ const homeStyles = makeStyles((theme: Theme) =>
         },
         menuButton: {
             marginRight: theme.spacing(2),
-            color: theme.palette.primary.main
+            // color: theme.palette.primary.main
         },
         expansionPanel: {
             backgroundColor: theme.palette.background.default,

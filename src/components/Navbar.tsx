@@ -31,6 +31,7 @@ const Navbar = ({ selectKey }: Tprops) => {
                         onClick={() => setOpen(!open)}
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
+                        color="primary" 
                     >
                         <MenuIcon />
                     </IconButton>
@@ -49,7 +50,7 @@ const Navbar = ({ selectKey }: Tprops) => {
                 }}
             >
                 <div className={classes.sidebarHeader}>
-                    <Typography variant="h2">Menu</Typography>
+                    <Typography variant="h2" style={{ marginRight: '5px' }}>Menu</Typography>
                     <IconButton color='primary' onClick={() => setOpen(!open)}>
                         <ChevronLeftIcon />
                     </IconButton>

@@ -1,4 +1,4 @@
-import { ButtonBase, Grid, Typography, createStyles, makeStyles } from "@material-ui/core";
+import { ButtonBase, Grid, Typography, createStyles, makeStyles, Button } from "@material-ui/core";
 import { Chord, ChordInstance, Key } from "../assets/objects";
 
 import React from "react";
@@ -15,6 +15,7 @@ const useStyles = makeStyles(() =>
             minWidth: 100,
             padding: "1rem",
             margin: "1rem",
+            textTransform: 'none'
         },
     }),
 );
@@ -38,10 +39,9 @@ const ChordSelection = ({ selectedKey, currentPhrase, setCurrentPhrase }: Tprops
     return (
         <Grid container justify="center" spacing={1}>
             {selectedKey.chords().map((chord, i) => (
-                <ButtonBase key={i} className={classes.card} onClick={() => addChord(chord)}>
-                    <Typography variant="h2">{chord.name}</Typography>
-                    <Typography>{chord.type}</Typography>
-                </ButtonBase>
+                <Button key={i} className={classes.card} variant="outlined" onClick={() => addChord(chord)}>
+                    <Typography variant="h2">{chord.name + " " + chord.type}</Typography>
+                </Button>
             ))}
         </Grid>
     );
