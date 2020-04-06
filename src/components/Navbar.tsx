@@ -49,8 +49,9 @@ const Navbar = ({ selectKey }: Tprops) => {
                 }}
             >
                 <div className={classes.sidebarHeader}>
-                    <IconButton onClick={() => setOpen(!open)}>
-                        <ChevronLeftIcon style={{ color: '#fff'}} />
+                    <Typography variant="h2">Menu</Typography>
+                    <IconButton color='primary' onClick={() => setOpen(!open)}>
+                        <ChevronLeftIcon />
                     </IconButton>
                 </div>
                 <ExpansionPanel className={classes.expansionPanel}>

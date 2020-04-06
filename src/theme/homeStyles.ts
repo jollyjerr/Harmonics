@@ -31,7 +31,7 @@ const homeStyles = makeStyles((theme: Theme) =>
             color: theme.palette.primary.main
         },
         expansionPanel: {
-            backgroundColor: theme.palette.primary.dark,
+            backgroundColor: theme.palette.background.default,
             color: theme.palette.primary.main,
         },
         keyContainer: {

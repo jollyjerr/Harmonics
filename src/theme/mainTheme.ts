@@ -13,7 +13,10 @@ const palette = {
         light: "#90b8f8",
         contrastText: "#fffdf9"
     },
-    background: { default: "#353941" },
+    text: {
+        primary: "#fff"
+    },
+    background: { default: "#353941", paper: "#26282b" },
 }
 
 const typography = {
