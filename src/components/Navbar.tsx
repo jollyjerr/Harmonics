@@ -31,6 +31,7 @@ const Navbar = ({ selectKey }: Tprops) => {
                         onClick={() => setOpen(!open)}
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
+                        color="primary" 
                     >
                         <MenuIcon />
                     </IconButton>
@@ -49,12 +50,13 @@ const Navbar = ({ selectKey }: Tprops) => {
                 }}
             >
                 <div className={classes.sidebarHeader}>
-                    <IconButton onClick={() => setOpen(!open)}>
+                    <Typography variant="h2" style={{ marginRight: '5px' }}>Menu</Typography>
+                    <IconButton color='primary' onClick={() => setOpen(!open)}>
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>
-                <ExpansionPanel>
-                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-controls="change-key">
+                <ExpansionPanel className={classes.expansionPanel}>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon style={{ color: "#fff" }} />} aria-controls="change-key">
                         <Typography>Change Key</Typography>
                     </ExpansionPanelSummary>
                     <Grid container className={classes.keyContainer}>
